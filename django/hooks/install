@@ -1,0 +1,29 @@
+sudo apt-get install python-pip nginx
+sudo pip install virtualenv virtualenvwrapper
+
+cat >> ~/.bashrc << EOF
+export WORKON_HOME=$HOME/.virtualenvs
+source /usr/local/bin/virtualenvwrapper.sh
+EOF
+
+mkvirtualenv production
+workon production
+
+pip install gunicorn django
+
+source ../utils/start_gunicorn
+source ../utils/configure_supervisor
+
+# nginx and gunicorn conf
+sudo mkdir /home/application
+sudo mkdir /home/application/static
+sudo touch /home/application/access.log
+sudo touch /home/application/error.log
+sudo touch /home/application/gunicorn.log
+sudo chmod 765 /home/application/* -R
+
+sudo ln -s /etc/nginx/sites-available ../utils/nginx.conf
+sudo ln -s /etc/nginx/sites-enabled ../utils/nginx.conf
+
+sudo /etc/ini.d/nginx stop
+sudo /etc/ini.d/nginx start

@@ -1,0 +1,4 @@
+#!/bin/bash
+set -e
+NUM_WORKERS=3
+gunicorn_django -D -w $NUM_WORKERS --log-level=debug --bind=127.0.0.1:8888 --acces-logfile=/home/application/gunicorn.log
