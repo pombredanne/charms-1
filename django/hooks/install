@@ -2,15 +2,17 @@
 
 set -eu
 
-DEBIAN_FRONTEND=noninteractive sudo apt-get install -qqy python-pip nginx
-
-sudo pip install gunicorn django
+juju-log "installing pip and nginx"
+sudo apt-get install -qqy nginx gunicorn python-django
 
 # copy charm folder in order to use nginx.conf
 sudo mkdir /home/django-charm
 sudo cp -r ../* /home/django-charm
+
+juju-log "starting gunicorn"
 source /home/django-charm/utils/start_gunicorn
 
+juju-log "creating application dirs and log files"
 # nginx and gunicorn conf
 sudo mkdir /home/application
 sudo mkdir /home/application/static
@@ -19,8 +21,10 @@ sudo touch /home/application/error.log
 sudo touch /home/application/gunicorn.log
 sudo chmod 765 /home/application/* -R
 
+juju-log "copying nginx config files"
 sudo ln -s /etc/nginx/sites-available/application.conf /home/django-charm/utils/nginx.conf
 sudo ln -s /etc/nginx/sites-enabled/application.conf /home/django-charm/utils/nginx.conf
 
+juju-log "restarting nginx"
 sudo /etc/init.d/nginx stop
 sudo /etc/init.d/nginx start
