@@ -1,8 +1,11 @@
-sudo apt-get install python-pip nginx
+sudo apt-get install -y python-pip nginx
 
 sudo pip install gunicorn django
 
-source ../utils/start_gunicorn
+# copy charm folder in order to use nginx.conf
+sudo mkdir /home/django-charm
+sudo cp -r ../* /home/django-charm
+source /home/django-charm/utils/start_gunicorn
 
 # nginx and gunicorn conf
 sudo mkdir /home/application
@@ -12,8 +15,8 @@ sudo touch /home/application/error.log
 sudo touch /home/application/gunicorn.log
 sudo chmod 765 /home/application/* -R
 
-sudo ln -s ../utils/nginx.conf /etc/nginx/sites-available/application.conf
-sudo ln -s ../utils/nginx.conf /etc/nginx/sites-enabled/application.conf
+sudo ln -s /etc/nginx/sites-available/application.conf /home/django-charm/utils/nginx.conf
+sudo ln -s /etc/nginx/sites-enabled/application.conf /home/django-charm/utils/nginx.conf
 
 sudo /etc/init.d/nginx stop
 sudo /etc/init.d/nginx start
