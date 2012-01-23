@@ -15,5 +15,5 @@ sudo chmod 765 /home/application/* -R
 sudo ln -s ../utils/nginx.conf /etc/nginx/sites-available/application.conf
 sudo ln -s ../utils/nginx.conf /etc/nginx/sites-enabled/application.conf
 
-sudo /etc/ini.d/nginx stop
-sudo /etc/ini.d/nginx start
+sudo /etc/init.d/nginx stop
+sudo /etc/init.d/nginx start
