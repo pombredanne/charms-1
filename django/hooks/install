@@ -3,7 +3,6 @@ sudo apt-get install python-pip nginx
 sudo pip install gunicorn django
 
 source ../utils/start_gunicorn
-source ../utils/configure_supervisor
 
 # nginx and gunicorn conf
 sudo mkdir /home/application
