@@ -12,8 +12,8 @@ sudo touch /home/application/error.log
 sudo touch /home/application/gunicorn.log
 sudo chmod 765 /home/application/* -R
 
-sudo ln -s /etc/nginx/sites-available ../utils/nginx.conf
-sudo ln -s /etc/nginx/sites-enabled ../utils/nginx.conf
+sudo ln -s ../utils/nginx.conf /etc/nginx/sites-available/application.conf
+sudo ln -s ../utils/nginx.conf /etc/nginx/sites-enabled/application.conf
 
 sudo /etc/ini.d/nginx stop
 sudo /etc/ini.d/nginx start
