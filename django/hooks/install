@@ -9,9 +9,6 @@ sudo apt-get install -qqy nginx gunicorn python-django
 sudo mkdir /home/django-charm
 sudo cp -r ../* /home/django-charm
 
-juju-log "starting gunicorn"
-source /home/django-charm/utils/start_gunicorn
-
 juju-log "creating application dirs and log files"
 # nginx and gunicorn conf
 sudo mkdir /home/application
