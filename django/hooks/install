@@ -5,21 +5,25 @@ set -eu
 juju-log "installing pip and nginx"
 sudo apt-get install -qqy nginx gunicorn python-django
 
-# copy charm folder in order to use nginx.conf
-sudo mkdir /home/django-charm
-sudo cp -r ../* /home/django-charm
-
 juju-log "creating application dirs and log files"
 # nginx conf
 sudo mkdir /home/application
 sudo mkdir /home/application/static
 sudo touch /home/application/access.log
 sudo touch /home/application/error.log
-sudo chmod 765 /home/application/* -R
+sudo chown ubuntu:ubuntu /home/application/ -R
+sudo chown ubuntu:ubuntu /home/django-charm/ -R
+
+# set absolute path to symlink nginx conf
+nginx_conf_path="../utils/nginx.conf"
+old_pwd="`pwd`"
+cd "`dirname "$nginx_conf_path"`"
+nginx_abs_conf_path="`pwd`/`basename $nginx_conf_path`"
+cd "$old_pwd"
 
 juju-log "copying nginx config files"
-sudo ln -s /home/django-charm/utils/nginx.conf /etc/nginx/sites-available/application.conf
-sudo ln -s /home/django-charm/utils/nginx.conf /etc/nginx/sites-enabled/application.conf
+sudo ln -s $($nginx_abs_conf_path) /etc/nginx/sites-available/application.conf
+sudo ln -s $($nginx_abs_conf_path) /etc/nginx/sites-enabled/application.conf
 
 juju-log "restarting nginx"
 sudo /etc/init.d/nginx stop
