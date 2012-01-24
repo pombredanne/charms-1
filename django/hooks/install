@@ -12,18 +12,17 @@ sudo mkdir /home/application/static
 sudo touch /home/application/access.log
 sudo touch /home/application/error.log
 sudo chown ubuntu:ubuntu /home/application/ -R
-sudo chown ubuntu:ubuntu /home/django-charm/ -R
 
 # set absolute path to symlink nginx conf
 nginx_conf_path="../utils/nginx.conf"
-old_pwd="`pwd`"
-cd "`dirname "$nginx_conf_path"`"
-nginx_abs_conf_path="`pwd`/`basename $nginx_conf_path`"
-cd "$old_pwd"
+old_pwd=`pwd`
+cd `dirname "${nginx_conf_path}"`
+nginx_abs_conf_path="`pwd`/`basename ${nginx_conf_path}`"
+cd ${old_pwd}
 
 juju-log "copying nginx config files"
-sudo ln -s $($nginx_abs_conf_path) /etc/nginx/sites-available/application.conf
-sudo ln -s $($nginx_abs_conf_path) /etc/nginx/sites-enabled/application.conf
+sudo ln -s ${$nginx_abs_conf_path} /etc/nginx/sites-available/application.conf
+sudo ln -s ${$nginx_abs_conf_path} /etc/nginx/sites-enabled/application.conf
 
 juju-log "restarting nginx"
 sudo /etc/init.d/nginx stop
