@@ -10,17 +10,16 @@ sudo mkdir /home/django-charm
 sudo cp -r ../* /home/django-charm
 
 juju-log "creating application dirs and log files"
-# nginx and gunicorn conf
+# nginx conf
 sudo mkdir /home/application
 sudo mkdir /home/application/static
 sudo touch /home/application/access.log
 sudo touch /home/application/error.log
-sudo touch /home/application/gunicorn.log
 sudo chmod 765 /home/application/* -R
 
 juju-log "copying nginx config files"
-sudo ln -s /etc/nginx/sites-available/application.conf /home/django-charm/utils/nginx.conf
-sudo ln -s /etc/nginx/sites-enabled/application.conf /home/django-charm/utils/nginx.conf
+sudo ln -s /home/django-charm/utils/nginx.conf /etc/nginx/sites-available/application.conf
+sudo ln -s /home/django-charm/utils/nginx.conf /etc/nginx/sites-enabled/application.conf
 
 juju-log "restarting nginx"
 sudo /etc/init.d/nginx stop
