@@ -1,5 +1,4 @@
 name: django
-revision: 1
 summary: "Django Framework"
 description: |
     Install Django web framework, relating it with mysql charm, running with nginx and gunicorn.
