@@ -13,7 +13,7 @@ sudo touch /home/application/access.log
 sudo touch /home/application/error.log
 sudo chown ubuntu:ubuntu /home/application/ -R
 
-juju_unit=`echo ${JUJU_UNIT_NAME} | sed "s/\//-/"}`
+juju_unit=`echo ${JUJU_UNIT_NAME} | sed "s/\//-/"`
 juju_charm="/var/lib/juju/units/${juju_unit}/charm"
 nginx_conf="${juju_charm}/utils/nginx.conf"
 
