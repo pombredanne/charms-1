@@ -7,8 +7,7 @@ sudo apt-get install -qqy nginx gunicorn python-django
 
 juju-log "creating application dirs and log files"
 # nginx conf
-sudo mkdir /home/application
-sudo mkdir /home/application/static
+sudo mkdir -p /home/application/static
 sudo touch /home/application/access.log
 sudo touch /home/application/error.log
 sudo chown ubuntu:ubuntu /home/application/ -R
