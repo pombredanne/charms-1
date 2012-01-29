@@ -1,4 +1,7 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-sudo /etc/init.d/nginx stop
-sudo /etc/init.d/nginx start
+juju_unit=`echo ${JUJU_UNIT_NAME} | sed "s/\//-/"`
+juju_charm="/var/lib/juju/units/${juju_unit}/charm"
+
+$juju_charm/utils/stop_gunicorn
+/etc/init.d/nginx stop
