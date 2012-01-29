@@ -1,6 +1,13 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 set -e
 NUM_WORKERS=3
+ACCESS_LOG_FILE=gunicorn_access.log
+ERROR_LOG_FILE=gunicorn_error.log
+PID_FILE=gunicorn.pid
+APP_DIR=/home/application
+VIRTUALENV=${APP_DIR}/env
 
-gunicorn_django -D -w $NUM_WORKERS --log-level=debug --bind=127.0.0.1:8888
+pushd ${APP_DIR}/helloworld
+${VIRTUALENV}/bin/gunicorn_django --daemon --workers=${NUM_WORKERS} --log-level=warning --access-logfile=${ACCESS_LOG_FILE} --error-logfile=${ERROR_LOG_FILE} --bind=127.0.0.1:8888 --pid=${PID_FILE}
+popd
