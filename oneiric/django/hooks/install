@@ -1,25 +1,28 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 set -eu
 
-juju-log "installing pip and nginx"
-sudo apt-get install -qqy nginx gunicorn python-django
+VIRTUALENV=/home/application/env
+
+juju-log "installing nginx and virtualenv"
+apt-get install -qqy nginx python-virtualenv
 
 juju-log "creating application dirs and log files"
 # nginx conf
-sudo mkdir -p /home/application/static
-sudo touch /home/application/access.log
-sudo touch /home/application/error.log
-sudo chown ubuntu:ubuntu /home/application/ -R
+mkdir -p /home/application/static
+
+juju-log "creating the virtualenv and installing Django and gunicorn"
+virtualenv --no-site-packages --unzip-setuptools ${VIRTUALENV}
+${VIRTUALENV}/bin/pip install django gunicorn
 
 juju_unit=`echo ${JUJU_UNIT_NAME} | sed "s/\//-/"`
 juju_charm="/var/lib/juju/units/${juju_unit}/charm"
 nginx_conf="${juju_charm}/utils/nginx.conf"
 
 juju-log "copying nginx config files"
-sudo ln -s ${nginx_conf} /etc/nginx/sites-available/application.conf
-sudo ln -s ${nginx_conf} /etc/nginx/sites-enabled/application.conf
+ln -s ${nginx_conf} /etc/nginx/sites-enabled/application.conf
 
-juju-log "restarting nginx"
-sudo /etc/init.d/nginx stop
-sudo /etc/init.d/nginx start
+juju-log "copying the hello world sample application"
+cp -r ${juju_charm}/utils/helloworld /home/application
+
+sudo chown -R ubuntu:ubuntu /home/application/
