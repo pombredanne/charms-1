@@ -4,8 +4,9 @@ set -eu
 
 VIRTUALENV=/home/application/env
 
-juju-log "installing python-mysqldb on virtualenv"
-apt-get install -qqy python-mysqldb
+juju-log "installing MySQL-python on virtualenv"
+apt-get install python-all-dev
+apt-get install libmysqlclient-dev
 
 ${VIRTUALENV}/bin/pip install MySQL-python
 
@@ -19,7 +20,7 @@ user=`relation-get user`
 password=`relation-get password`
 host=`relation-get private-address`
 
-secret_key=`pwgen 10 1`
+# secret_key=`pwgen 10 1`
 
 juju-log "Adding database info on environment"
 
