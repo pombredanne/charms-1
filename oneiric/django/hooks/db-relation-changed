@@ -10,21 +10,4 @@ apt-get install libmysqlclient-dev -y
 
 ${VIRTUALENV}/bin/pip install MySQL-python
 
-database=`relation-get database`
-
-if [ -z "$database" ] ; then
-    exit 0 # wait for future handshake from database service unit
-fi
-
-user=`relation-get user`
-password=`relation-get password`
-host=`relation-get private-address`
-
 # secret_key=`pwgen 10 1`
-
-juju-log "Adding database info on environment"
-
-export DB_NAME=$database
-export DB_USER=$user
-export DB_PASSWORD=$password
-export DB_HOST=$host
