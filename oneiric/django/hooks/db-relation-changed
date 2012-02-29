@@ -9,5 +9,3 @@ apt-get install python-all-dev -y
 apt-get install libmysqlclient-dev -y
 
 ${VIRTUALENV}/bin/pip install MySQL-python
-
-# secret_key=`pwgen 10 1`

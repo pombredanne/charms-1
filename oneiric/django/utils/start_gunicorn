@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
 set -e
+
+# set envinronment variables for the app
+source ./environment.sh
+
 NUM_WORKERS=3
 ACCESS_LOG_FILE=gunicorn_access.log
 ERROR_LOG_FILE=gunicorn_error.log
