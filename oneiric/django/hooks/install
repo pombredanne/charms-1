@@ -15,14 +15,12 @@ juju-log "creating the virtualenv and installing Django and gunicorn"
 virtualenv --no-site-packages --unzip-setuptools ${VIRTUALENV}
 ${VIRTUALENV}/bin/pip install django gunicorn
 
-juju_unit=`echo ${JUJU_UNIT_NAME} | sed "s/\//-/"`
-juju_charm="/var/lib/juju/units/${juju_unit}/charm"
-nginx_conf="${juju_charm}/utils/nginx.conf"
+nginx_conf="${CHARM_DIR}/utils/nginx.conf"
 
 juju-log "copying nginx config files"
 ln -s ${nginx_conf} /etc/nginx/sites-enabled/application.conf
 
 juju-log "copying the hello world sample application"
-cp -r ${juju_charm}/utils/helloworld /home/application
+cp -r ${CHARM_DIR}/utils/helloworld /home/application
 
 sudo chown -R ubuntu:ubuntu /home/application/
