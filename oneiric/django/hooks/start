@@ -1,9 +1,6 @@
 #!/usr/bin/env bash
 
-juju_unit=`echo ${JUJU_UNIT_NAME} | sed "s/\//-/"`
-juju_charm="/var/lib/juju/units/${juju_unit}/charm"
-
-$juju_charm/utils/start_gunicorn
+$CHARM_DIR/utils/start_gunicorn
 
 /etc/init.d/nginx start
 open-port 80
