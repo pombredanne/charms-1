@@ -7,4 +7,5 @@ from django.views.generic.simple import direct_to_template
 
 urlpatterns = patterns('',
     url(r'^$', direct_to_template, {"template": "index.html"}),
+    url(r'^environ/?$', 'views.hello_world'),
 )
