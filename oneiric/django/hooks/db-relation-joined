@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+set -eu
+
+VIRTUALENV=/home/application/env
+
+juju-log "installing MySQL-python on virtualenv"
+apt-get install python-all-dev -y
+apt-get install libmysqlclient-dev -y
+
+${VIRTUALENV}/bin/pip install MySQL-python
