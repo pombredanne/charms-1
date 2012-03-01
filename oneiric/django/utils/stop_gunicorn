@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
 APP_DIR=/home/application
-kill -KILL -TERM `cat ${APP_DIR}/gunicorn.pid`
+kill -TERM `cat ${APP_DIR}/gunicorn.pid`
