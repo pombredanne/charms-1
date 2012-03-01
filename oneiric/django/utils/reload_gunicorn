@@ -4,4 +4,4 @@ set -e
 
 APP_DIR=/home/application
 
-kill -HUP `cat ${APP_ROOT}/gunicorn.pid`
+kill -HUP `cat ${APP_DIR}/gunicorn.pid`
