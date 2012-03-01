@@ -5,11 +5,13 @@ set -e
 # set envinronment variables for the app
 source $CHARM_DIR/utils/environment.sh
 
-NUM_WORKERS=3
-ACCESS_LOG_FILE=gunicorn_access.log
-ERROR_LOG_FILE=gunicorn_error.log
-PID_FILE=$APP_DIR/gunicorn.pid
 APP_DIR=/home/application
+LOG_DIR=/var/log
+
+NUM_WORKERS=3
+ACCESS_LOG_FILE=${LOG_DIR}/gunicorn_access.log
+ERROR_LOG_FILE=${LOG_DIR}/gunicorn_error.log
+PID_FILE=${APP_DIR}/gunicorn.pid
 VIRTUALENV=${APP_DIR}/env
 
 pushd ${APP_DIR}/helloworld
