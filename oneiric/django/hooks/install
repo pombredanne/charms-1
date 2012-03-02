@@ -19,6 +19,7 @@ nginx_conf="${CHARM_DIR}/utils/nginx.conf"
 
 juju-log "copying nginx config files"
 ln -s ${nginx_conf} /etc/nginx/sites-enabled/application.conf
+rm -f /etc/nginx/sites-enabled/default
 
 juju-log "copying the hello world sample application"
 cp -r ${CHARM_DIR}/utils/helloworld /home/application
