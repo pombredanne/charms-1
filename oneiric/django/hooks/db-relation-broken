@@ -7,3 +7,8 @@ juju-log "installing MySQL-python on virtualenv"
 apt-get remove python-all-dev -y
 apt-get remove libmysqlclient-dev -y
 apt-get autoremove -y
+
+VIRTUALENV=/home/application/env
+${VIRTUALENV}/bin/pip uninstall MySQL-python -y
+
+$CHARM_DIR/utils/reload_gunicorn
