@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+set -e
+
+APP_DIR=/home/application
+VIRTUALENV=${APP_DIR}/env
+CURRENT_DIR=${APP_DIR}/releases/current
+
+if [ -f ${CURRENT_DIR}/requirements.txt ]; then
+    ${VIRTUALENV}/bin/pip install -r requirements.txt
+fi
