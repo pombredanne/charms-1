@@ -7,5 +7,5 @@ VIRTUALENV=${APP_DIR}/env
 CURRENT_DIR=${APP_DIR}/releases/current
 
 if [ -f ${CURRENT_DIR}/requirements.txt ]; then
-    ${VIRTUALENV}/bin/pip install -r requirements.txt
+    ${VIRTUALENV}/bin/pip install -r ${CURRENT_DIR}/requirements.txt
 fi
