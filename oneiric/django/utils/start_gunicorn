@@ -6,13 +6,9 @@ set -e
 source $CHARM_DIR/utils/environment.sh
 
 APP_DIR=/home/application
-LOG_DIR=/var/log
 
 NUM_WORKERS=3
-ACCESS_LOG_FILE=${LOG_DIR}/gunicorn_access.log
-ERROR_LOG_FILE=${LOG_DIR}/gunicorn_error.log
 VIRTUALENV=${APP_DIR}/env
-
 
 pushd ${APP_DIR}/releases/current
 SETTINGS_FILE=$(find . -maxdepth 2 -type f -name 'settings.py' | head -1)
@@ -20,5 +16,5 @@ popd
 
 PROJECT_DIR=$(dirname ${SETTINGS_FILE})
 pushd ${PROJECT_DIR}
-${VIRTUALENV}/bin/gunicorn_django --daemon --workers=${NUM_WORKERS} --log-level=warning --access-logfile=${ACCESS_LOG_FILE} --error-logfile=${ERROR_LOG_FILE} --bind=127.0.0.1:8888
+${VIRTUALENV}/bin/gunicorn_django --daemon --workers=${NUM_WORKERS} --bind=127.0.0.1:8888
 popd
