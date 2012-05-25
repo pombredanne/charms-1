@@ -16,6 +16,6 @@ SETTINGS_FILE=$(find . -maxdepth 2 -type f -name 'settings.py' | head -1)
 popd
 
 PROJECT_DIR=$(dirname ${SETTINGS_FILE})
-pushd ${PROJECT_DIR}
+pushd $APP_DIR/current/${PROJECT_DIR}
 ${VIRTUALENV}/bin/gunicorn_django --daemon --workers=${NUM_WORKERS} --bind=127.0.0.1:8888 --pid=${APP_DIR}/gunicorn.pid
 popd
