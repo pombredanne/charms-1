@@ -3,7 +3,7 @@
 set -e
 
 # set envinronment variables for the app
-CHARM_DIR=/var/lib/tsuru/
+CHARM_DIR=/var/lib/tsuru
 #source $CHARM_DIR/utils/environment.sh
 
 APP_DIR=/home/application
