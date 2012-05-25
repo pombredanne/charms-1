@@ -7,5 +7,5 @@ APP_DIR=/home/application
 # set envinronment variables for the app
 source $CHARM_DIR/utils/environment.sh
 
-source $CHARM_DIR/utils/stop_gunicorn
-source $CHARM_DIR/utils/start_gunicorn
+source $CHARM_DIR/utils/stop-gunicorn
+source $CHARM_DIR/utils/start-gunicorn

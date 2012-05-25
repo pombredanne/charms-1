@@ -10,7 +10,7 @@ APP_DIR=/home/application
 NUM_WORKERS=3
 VIRTUALENV=${APP_DIR}/env
 
-pushd ${APP_DIR}/releases/current
+pushd ${APP_DIR}/current
 SETTINGS_FILE=$(find . -maxdepth 2 -type f -name 'settings.py' | head -1)
 popd
 
