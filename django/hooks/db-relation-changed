@@ -2,4 +2,4 @@
 
 set -eu
 
-$CHARM_DIR/utils/reload_gunicorn
+$CHARM_DIR/hooks/reload_gunicorn
