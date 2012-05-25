@@ -2,4 +2,4 @@
 
 APP_DIR=/home/application
 
-killall gunicorn_django
+kill -9 `cat ${APP_DIR}/gunicorn.pid`

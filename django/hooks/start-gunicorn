@@ -17,5 +17,5 @@ popd
 
 PROJECT_DIR=$(dirname ${SETTINGS_FILE})
 pushd ${PROJECT_DIR}
-${VIRTUALENV}/bin/gunicorn_django --daemon --workers=${NUM_WORKERS} --bind=127.0.0.1:8888
+${VIRTUALENV}/bin/gunicorn_django --daemon --workers=${NUM_WORKERS} --bind=127.0.0.1:8888 --pid=${APP_DIR}/gunicorn.pid
 popd
