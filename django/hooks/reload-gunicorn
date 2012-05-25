@@ -6,7 +6,7 @@ APP_DIR=/home/application
 CHARM_DIR=/var/lib/tsuru/
 
 # set envinronment variables for the app
-source $CHARM_DIR/utils/environment.sh
+#source $CHARM_DIR/utils/environment.sh
 
 source $CHARM_DIR/utils/stop-gunicorn
 source $CHARM_DIR/utils/start-gunicorn
