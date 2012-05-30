@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/sh -e
 
 juju-log "installing MySQL-python on virtualenv"
 

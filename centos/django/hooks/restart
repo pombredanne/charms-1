@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/sh -e
 
 $CHARM_DIR/hooks/stop
 $CHARM_DIR/hooks/start

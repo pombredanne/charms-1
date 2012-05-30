@@ -1,4 +1,4 @@
-#!/bin/bash -el
+#!/bin/sh -el
 
 user=stratus
 group=${user}
