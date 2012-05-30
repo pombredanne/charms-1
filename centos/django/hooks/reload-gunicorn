@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash -e
 
 APP_DIR=/home/application
 CHARM_DIR=/var/lib/tsuru

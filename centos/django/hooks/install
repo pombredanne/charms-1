@@ -1,11 +1,7 @@
-#!/usr/bin/env bash
-
-set -eu
+#!/bin/bash -el
 
 user=stratus
 group=${user}
-export http_proxy=http://proxy01.globoi.com:3128
-export https_proxy=
 VIRTUALENV=/home/application/env
 
 function lineNumber {

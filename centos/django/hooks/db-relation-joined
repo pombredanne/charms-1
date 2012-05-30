@@ -1,10 +1,6 @@
-#!/usr/bin/env bash
-
-set -eu
+#!/bin/bash -e
 
 VIRTUALENV=/home/application/env
-export http_proxy=http://proxy01.globoi.com:3128
-export https_proxy=
 
 juju-log "installing MySQL-python on virtualenv"
 yum install python-devel mysql-devel --assumeyes --quiet
