@@ -3,8 +3,8 @@
 set -eu
 
 VIRTUALENV=/home/application/env
-http_proxy=http://proxy01.globoi.com:3128
-https_proxy=
+export http_proxy=http://proxy01.globoi.com:3128
+export https_proxy=
 
 juju-log "installing MySQL-python on virtualenv"
 yum install python-devel mysql-devel --assumeyes --quiet
