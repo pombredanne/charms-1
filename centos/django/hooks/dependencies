@@ -5,6 +5,8 @@ set -e
 APP_DIR=/home/application
 VIRTUALENV=${APP_DIR}/env
 CURRENT_DIR=${APP_DIR}/releases/current
+http_proxy=http://proxy01.globoi.com:3128
+https_proxy=
 
 if [ -f ${CURRENT_DIR}/requirements.txt ]; then
     ${VIRTUALENV}/bin/pip install -r ${CURRENT_DIR}/requirements.txt

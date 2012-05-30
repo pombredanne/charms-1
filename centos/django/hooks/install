@@ -4,8 +4,8 @@ set -eu
 
 user=stratus
 group=${user}
-proxy_http=http://proxy01.globoi.com:3128
-proxy_https=
+http_proxy=http://proxy01.globoi.com:3128
+https_proxy=
 VIRTUALENV=/home/application/env
 
 juju-log "installing nginx and virtualenv"
