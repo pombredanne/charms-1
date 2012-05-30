@@ -8,6 +8,10 @@ export http_proxy=http://proxy01.globoi.com:3128
 export https_proxy=
 VIRTUALENV=/home/application/env
 
+function lineNumber {
+    grep "$2" -n "$1" | awk -F ':' '{print $1}'
+}
+
 juju-log "installing nginx and virtualenv"
 yum install nginx python-virtualenv --enablerepo=epel --assumeyes --quiet
 
@@ -23,6 +27,14 @@ nginx_conf="${CHARM_DIR}/utils/nginx.conf"
 
 juju-log "copying nginx config files"
 ln -s ${nginx_conf} /etc/nginx/conf.d/application.conf
+start=`lineNumber "/etc/nginx/nginx.conf" "^\s*server {"`
+end=`lineNumber "/etc/nginx/nginx.conf" "^\s*#\s\?Load config files"`
+if [ ! ${start} = "" ] && [ ! ${end} = "" ]
+then
+    start=`expr ${start} - 1`
+    end=`expr ${end} - 1`
+    sed -i.bkp ${start},${end}d /etc/nginx/nginx.conf
+fi
 
 juju-log "creating releases dir"
 mkdir -p /home/application/releases
