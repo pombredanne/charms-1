@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-set -e
-
 APP_DIR=/home/application
 CHARM_DIR=/var/lib/tsuru
 
