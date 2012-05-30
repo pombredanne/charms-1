@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+$CHARM_DIR/hooks/start_gunicorn
+
+service nginx start
+open-port 80

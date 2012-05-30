@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+$CHARM_DIR/hooks/stop_gunicorn
+service nginx stop

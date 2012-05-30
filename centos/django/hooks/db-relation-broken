@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+set -eu
+
+juju-log "installing MySQL-python on virtualenv"
+
+yum remove python-devel mysql-devel --assumeyes
+
+VIRTUALENV=/home/application/env
+${VIRTUALENV}/bin/pip uninstall MySQL-python -y
+
+$CHARM_DIR/hooks/reload_gunicorn

@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+$CHARM_DIR/hooks/stop
+$CHARM_DIR/hooks/start

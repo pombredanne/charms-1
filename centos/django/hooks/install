@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+set -eu
+
+user=stratus
+group=${user}
+proxy_http=http://proxy01.globoi.com:3128
+proxy_https=
+VIRTUALENV=/home/application/env
+
+juju-log "installing nginx and virtualenv"
+yum install nginx python-virtualenv --enablerepo=epel --assumeyes --quiet
+
+juju-log "creating application dirs and log files"
+# nginx conf
+mkdir -p /home/application/static
+
+juju-log "creating the virtualenv and installing Django and gunicorn"
+virtualenv --no-site-packages --unzip-setuptools ${VIRTUALENV}
+${VIRTUALENV}/bin/pip install django gunicorn
+
+nginx_conf="${CHARM_DIR}/utils/nginx.conf"
+
+juju-log "copying nginx config files"
+ln -s ${nginx_conf} /etc/nginx/conf.d/application.conf
+rm /etc/nginx/sites-enabled/default
+
+juju-log "creating releases dir"
+mkdir -p /home/application/releases
+
+juju-log "making a symbolic link for hello world sample application to be a current release"
+ln -s ${CHARM_DIR}/utils/helloworld /home/application/releases/current
+
+ln -s ${CHARM_DIR} /var/lib/tsuru
+
+sudo chown -R ${user}:${group} /var/lib/tsuru/
+sudo chown -R ${user}:${group} /home/application/

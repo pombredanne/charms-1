@@ -1,0 +1,7 @@
+name: django
+summary: "Django Framework"
+description: |
+    Install Django web framework, relating it with mysql charm, running with nginx and gunicorn.
+requires:
+  db:
+    interface: mysql
