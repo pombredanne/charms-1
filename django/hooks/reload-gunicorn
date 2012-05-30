@@ -1,16 +1,10 @@
 #!/usr/bin/env bash
 
-set -e
-
 APP_DIR=/home/application
 CHARM_DIR=/var/lib/tsuru
 
 # set envinronment variables for the app
 #source $CHARM_DIR/utils/environment.sh
 
-if [ -f ${APP_DIR}/gunicorn.pid ]
-then
-    kill -HUP `cat ${APP_DIR}/gunicorn.pid`
-else
-    $CHARM_DIR/hooks/start-gunicorn
-fi
+kill -HUP `cat ${APP_DIR}/gunicorn.pid`
+[ $? != 0 ] && $CHARM_DIR/hooks/start-gunicorn
