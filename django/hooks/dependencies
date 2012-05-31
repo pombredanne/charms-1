@@ -4,7 +4,7 @@ set -e
 
 APP_DIR=/home/application
 VIRTUALENV=${APP_DIR}/env
-CURRENT_DIR=${APP_DIR}/releases/current
+CURRENT_DIR=${APP_DIR}/current
 
 if [ -f ${CURRENT_DIR}/requirements.apt ]; then
     sudo apt-get install $(cat ${CURRENT_DIR}/requirements.apt) -y
