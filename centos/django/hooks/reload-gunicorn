@@ -1,0 +1,7 @@
+#!/bin/sh -e
+
+APP_DIR=/home/application
+CHARM_DIR=/var/lib/tsuru
+source $CHARM_DIR/utils/environment.sh
+kill -HUP `cat ${APP_DIR}/gunicorn.pid`
+[ $? != 0 ] && $CHARM_DIR/hooks/start-gunicorn

@@ -1,0 +1,8 @@
+#!/bin/sh -e
+
+VIRTUALENV=/home/application/env
+
+juju-log "installing MySQL-python on virtualenv"
+yum install python-devel mysql-devel --assumeyes --quiet
+
+${VIRTUALENV}/bin/pip install MySQL-python

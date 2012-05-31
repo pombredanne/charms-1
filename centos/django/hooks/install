@@ -1,0 +1,44 @@
+#!/bin/sh -el
+
+user=stratus
+group=${user}
+VIRTUALENV=/home/application/env
+
+function lineNumber {
+    grep "$2" -n "$1" | awk -F ':' '{print $1}'
+}
+
+juju-log "installing nginx and virtualenv"
+yum install nginx python-virtualenv --enablerepo=epel --assumeyes --quiet
+
+juju-log "creating application dirs and log files"
+# nginx conf
+mkdir -p /home/application/static
+
+juju-log "creating the virtualenv and installing Django and gunicorn"
+virtualenv --no-site-packages --unzip-setuptools ${VIRTUALENV}
+${VIRTUALENV}/bin/pip install django==1.3.1 gunicorn==0.13.4
+
+nginx_conf="${CHARM_DIR}/utils/nginx.conf"
+
+juju-log "copying nginx config files"
+ln -s ${nginx_conf} /etc/nginx/conf.d/application.conf
+start=`lineNumber "/etc/nginx/nginx.conf" "^\s*server {"`
+end=`lineNumber "/etc/nginx/nginx.conf" "^\s*#\s\?Load config files"`
+if [ ! ${start} = "" ] && [ ! ${end} = "" ]
+then
+    start=`expr ${start} - 1`
+    end=`expr ${end} - 1`
+    sed -i.bkp ${start},${end}d /etc/nginx/nginx.conf
+fi
+
+juju-log "creating releases dir"
+mkdir -p /home/application/releases
+
+juju-log "making a symbolic link for hello world sample application to be a current release"
+ln -s ${CHARM_DIR}/utils/helloworld /home/application/releases/current
+
+ln -s ${CHARM_DIR} /var/lib/tsuru
+
+sudo chown -R ${user}:${group} /var/lib/tsuru/
+sudo chown -R ${user}:${group} /home/application/

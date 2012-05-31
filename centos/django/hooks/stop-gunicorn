@@ -1,0 +1,5 @@
+#!/bin/sh -e
+
+APP_DIR=/home/application
+
+kill -9 `cat ${APP_DIR}/gunicorn.pid`
