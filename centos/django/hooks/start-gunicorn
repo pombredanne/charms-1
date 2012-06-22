@@ -13,6 +13,8 @@ cd ${APP_DIR}/releases/current
 SETTINGS_FILE=$(find . -maxdepth 2 -type f -name 'settings.py' | head -1)
 cd $OLDPWD
 
+ENV_FILE=${APP_DIR}/apprc
+[ -f ${ENV_FILE} ] && source ${ENV_FILE}
 PROJECT_DIR=$(dirname ${SETTINGS_FILE})
 cd $APP_DIR/releases/current/${PROJECT_DIR}
 sudo -u ${user} ${VIRTUALENV}/bin/gunicorn_django --daemon --workers=${NUM_WORKERS} --bind=127.0.0.1:8888 --pid=${APP_DIR}/gunicorn.pid

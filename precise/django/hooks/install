@@ -11,6 +11,9 @@ juju-log "creating application dirs and log files"
 # nginx conf
 mkdir -p /home/application/static
 
+# creating the apprc file
+touch /home/application/apprc
+
 juju-log "creating the virtualenv and installing Django and gunicorn"
 virtualenv --no-site-packages --unzip-setuptools ${VIRTUALENV}
 ${VIRTUALENV}/bin/pip install django gunicorn
