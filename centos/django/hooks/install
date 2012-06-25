@@ -1,6 +1,6 @@
 #!/bin/sh -el
 
-user=stratus
+user=ubuntu
 group=${user}
 VIRTUALENV=/home/application/env
 

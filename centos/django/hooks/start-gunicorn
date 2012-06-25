@@ -2,7 +2,7 @@
 
 # set envinronment variables for the app
 CHARM_DIR=/var/lib/tsuru
-user=stratus
+user=ubuntu
 
 APP_DIR=/home/application
 
