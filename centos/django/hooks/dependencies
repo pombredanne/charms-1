@@ -2,12 +2,12 @@
 
 APP_DIR=/home/application
 VIRTUALENV=${APP_DIR}/env
-CURRENT_DIR=${APP_DIR}/releases/current
+CURRENT_DIR=${APP_DIR}/current
 
 if [ -f ${CURRENT_DIR}/requirements.txt ]; then
     ${VIRTUALENV}/bin/pip install -r ${CURRENT_DIR}/requirements.txt
 fi
 
 if [ -f ${CURRENT_DIR}/requirements.yum ]; then
-    yum install $(cat ${CURRENT_DIR}/requirements.yum) --assumeyes --quiet --enablerepo=epel
+    yum install $(cat ${CURRENT_DIR}/requirements.yum) --assumeyes --enablerepo=epel
 fi
