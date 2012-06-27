@@ -38,9 +38,7 @@ fi
 juju-log "creating releases dir"
 mkdir -p /home/application/releases
 
-juju-log "making a symbolic link for hello world sample application to be a current release"
-ln -s ${CHARM_DIR}/utils/helloworld /home/application/releases/current
-
+juju-log "linking the charm"
 ln -s ${CHARM_DIR} /var/lib/tsuru
 
 sudo chown -R ${user}:${group} /var/lib/tsuru/
