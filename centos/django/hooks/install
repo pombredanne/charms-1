@@ -19,7 +19,7 @@ mkdir -p /home/application/static
 touch /home/application/apprc
 
 juju-log "creating the virtualenv and installing Django and gunicorn"
-virtualenv --no-site-packages --unzip-setuptools ${VIRTUALENV}
+virtualenv --unzip-setuptools ${VIRTUALENV}
 ${VIRTUALENV}/bin/pip install django==1.3.1 gunicorn==0.13.4
 
 nginx_conf="${CHARM_DIR}/utils/nginx.conf"
