@@ -5,7 +5,7 @@ VIRTUALENV=${APP_DIR}/env
 CURRENT_DIR=${APP_DIR}/current
 
 if [ -f ${CURRENT_DIR}/requirements.yum ]; then
-    yum install $(cat ${CURRENT_DIR}/requirements.yum) --assumeyes --enablerepo=epel
+    sudo yum install $(cat ${CURRENT_DIR}/requirements.yum) --assumeyes --enablerepo=epel
 fi
 
 if [ -f ${CURRENT_DIR}/requirements.txt ]; then
