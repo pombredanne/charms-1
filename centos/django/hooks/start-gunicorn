@@ -19,7 +19,7 @@ then
     [ -f ${ENV_FILE} ] && source ${ENV_FILE}
     PROJECT_DIR=$(dirname ${SETTINGS_FILE})
     cd $APP_DIR/current/${PROJECT_DIR}
-    sudo -u ${user} ${VIRTUALENV}/bin/gunicorn_django --daemon --workers=${NUM_WORKERS} --bind=127.0.0.1:8888 --pid=${APP_DIR}/gunicorn.pid
+    ${VIRTUALENV}/bin/gunicorn_django --daemon --workers=${NUM_WORKERS} --bind=127.0.0.1:8888 --pid=${APP_DIR}/gunicorn.pid
     cd $OLDPWD
 else
     juju-log "skipping gunicorn start: app not deployed yet"
