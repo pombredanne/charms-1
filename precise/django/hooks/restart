@@ -2,5 +2,5 @@
 
 CHARM_DIR=/var/lib/tsuru
 
-$CHARM_DIR/hooks/stop
-$CHARM_DIR/hooks/start
+$CHARM_DIR/hooks/stop-gunicorn
+$CHARM_DIR/hooks/start-gunicorn
