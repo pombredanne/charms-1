@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-set -e
-
 # set envinronment variables for the app
 CHARM_DIR=/var/lib/tsuru
 #source $CHARM_DIR/utils/environment.sh
