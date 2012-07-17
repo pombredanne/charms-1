@@ -1,6 +1,12 @@
-#!/bin/sh -e
+#!/bin/sh
 
 CHARM_DIR=/var/lib/tsuru
+APP_DIR=/home/application
 
 $CHARM_DIR/hooks/stop-gunicorn
+
+while [ -d /proc/`cat ${APP_DIR}/gunicorn.pid` ]; do
+    sleep 1
+done
+
 $CHARM_DIR/hooks/start-gunicorn
