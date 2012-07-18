@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 CHARM_DIR=/var/lib/tsuru
 

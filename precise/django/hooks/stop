@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 $CHARM_DIR/hooks/stop_gunicorn
 /etc/init.d/nginx stop
