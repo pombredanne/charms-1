@@ -1,6 +1,4 @@
-#!/bin/bash
-
-set -e
+#!/bin/bash -el
 
 APP_DIR=/home/application
 VIRTUALENV=${APP_DIR}/env
