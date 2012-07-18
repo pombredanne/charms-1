@@ -1,7 +1,6 @@
 #!/bin/bash
 
 CHARM_DIR=/var/lib/tsuru
-
 APP_DIR=/home/application
 
 if [ -d ${APP_DIR}/current ]

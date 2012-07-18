@@ -5,8 +5,10 @@ APP_DIR=/home/application
 
 $CHARM_DIR/hooks/stop-gunicorn
 
-while [ -d /proc/`cat ${APP_DIR}/gunicorn.pid` ]; do
-    sleep 1
-done
+if [ -f ${APP_DIR}/gunicorn.pid ]; then
+    while [ -d /proc/`cat ${APP_DIR}/gunicorn.pid` ]; do
+        sleep 1
+    done
+fi
 
 $CHARM_DIR/hooks/start-gunicorn
