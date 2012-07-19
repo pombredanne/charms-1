@@ -1,9 +1,7 @@
-#!/bin/bash
-
-set -eu
+#!/bin/bash -l
 
 juju-log "downloading node.js "
-wget -O /tmp/node-v0.8.3.tar.gz http://nodejs.org/dist/v0.8.3/node-v0.8.3.tar.gz 2> /dev/null
+wget -O /tmp/node-v0.8.3.tar.gz http://nodejs.org/dist/v0.8.3/node-v0.8.3.tar.gz
 
 juju-log "uncompressing node.js"
 tar xzf /tmp/node-v0.8.3.tar.gz
