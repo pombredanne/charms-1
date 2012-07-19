@@ -1,0 +1,29 @@
+#!/bin/bash
+
+set -eu
+
+juju-log "downloading node.js "
+wget -q -O /tmp/node-v0.8.3.tar.gz http://nodejs.org/dist/v0.8.3/node-v0.8.3.tar.gz 2> /dev/null
+
+juju-log "uncompressing node.js"
+tar xzvf /tmp/node-v0.8.3.tar.gz
+
+juju-log "installing node.js"
+cd /tmp/node-v0.8.3
+./configure && make && make install
+
+juju-log "removing temporary files"
+rm -fr /tmp/node-v0.8.3*
+
+juju-log "creating application dirs and log files"
+# creating the apprc file
+touch /home/application/apprc
+
+juju-log "creating releases dir"
+mkdir -p /home/application/releases
+
+juju-log "linking the charm"
+ln -s ${CHARM_DIR} /var/lib/tsuru
+
+sudo chown -R ubuntu:ubuntu /var/lib/tsuru/
+sudo chown -R ubuntu:ubuntu /home/application/
