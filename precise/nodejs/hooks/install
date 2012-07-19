@@ -1,5 +1,7 @@
 #!/bin/bash -l
 
+set -u
+
 juju-log "installing make and g++"
 apt-get install -qqy make g++
 
