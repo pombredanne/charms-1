@@ -3,10 +3,10 @@
 set -eu
 
 juju-log "downloading node.js "
-wget -q -O /tmp/node-v0.8.3.tar.gz http://nodejs.org/dist/v0.8.3/node-v0.8.3.tar.gz 2> /dev/null
+wget -O /tmp/node-v0.8.3.tar.gz http://nodejs.org/dist/v0.8.3/node-v0.8.3.tar.gz 2> /dev/null
 
 juju-log "uncompressing node.js"
-tar xzvf /tmp/node-v0.8.3.tar.gz
+tar xzf /tmp/node-v0.8.3.tar.gz
 
 juju-log "installing node.js"
 cd /tmp/node-v0.8.3
