@@ -1,5 +1,8 @@
 #!/bin/bash -l
 
+juju-log "installing make and g++"
+apt-get install -qqy make g++
+
 cd /tmp
 
 juju-log "downloading node.js "
