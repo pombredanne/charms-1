@@ -1,0 +1,4 @@
+name: sinatra
+summary: "Sinatra Framework"
+description: |
+    Install sinatra web framework, running with nginx and webrick.
