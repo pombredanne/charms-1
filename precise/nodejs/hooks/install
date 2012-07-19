@@ -1,14 +1,17 @@
 #!/bin/bash -l
 
+cd /tmp
+
 juju-log "downloading node.js "
-wget -O /tmp/node-v0.8.3.tar.gz http://nodejs.org/dist/v0.8.3/node-v0.8.3.tar.gz
+wget http://nodejs.org/dist/v0.8.3/node-v0.8.3.tar.gz
 
 juju-log "uncompressing node.js"
-tar xzf /tmp/node-v0.8.3.tar.gz
+tar xzf node-v0.8.3.tar.gz
 
 juju-log "installing node.js"
-cd /tmp/node-v0.8.3
+cd node-v0.8.3
 ./configure && make && make install
+cd -
 
 juju-log "removing temporary files"
 rm -fr /tmp/node-v0.8.3*
