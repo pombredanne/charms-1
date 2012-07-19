@@ -20,6 +20,7 @@ juju-log "removing temporary files"
 rm -fr /tmp/node-v0.8.3*
 
 juju-log "creating application dirs and log files"
+mkdir -p /home/application
 # creating the apprc file
 touch /home/application/apprc
 
