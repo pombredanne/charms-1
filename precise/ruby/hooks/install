@@ -2,6 +2,9 @@
 
 set -u
 
+echo "vai"
+
+
 # juju-log "installing ruby"
 # apt-get install ruby1.9.3
 
