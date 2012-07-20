@@ -3,7 +3,7 @@
 set -u
 
 juju-log "installing ruby"
-apt-get install ruby1.9.3
+apt-get install -qqy ruby1.9.3
 
 juju-log "installing bundler"
 gem install bundler
