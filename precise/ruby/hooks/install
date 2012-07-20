@@ -2,8 +2,6 @@
 
 set -u
 
-echo "vai"
-
 
 # juju-log "installing ruby"
 # apt-get install ruby1.9.3
@@ -11,16 +9,16 @@ echo "vai"
 # juju-log "installing bundler"
 # gem install bundler
 
-# juju-log "creating application dirs and log files"
-# mkdir -p /home/application
-# # creating the apprc file
-# touch /home/application/apprc
+juju-log "creating application dirs and log files"
+mkdir -p /home/application
+# creating the apprc file
+touch /home/application/apprc
 
-# juju-log "creating releases dir"
-# mkdir -p /home/application/releases
+juju-log "creating releases dir"
+mkdir -p /home/application/releases
 
-# juju-log "linking the charm"
-# ln -s ${CHARM_DIR} /var/lib/tsuru
+juju-log "linking the charm"
+ln -s ${CHARM_DIR} /var/lib/tsuru
 
-# sudo chown -R ubuntu:ubuntu /var/lib/tsuru/
-# sudo chown -R ubuntu:ubuntu /home/application/
+sudo chown -R ubuntu:ubuntu /var/lib/tsuru/
+sudo chown -R ubuntu:ubuntu /home/application/
