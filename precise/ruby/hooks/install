@@ -2,12 +2,11 @@
 
 set -u
 
+juju-log "installing ruby"
+apt-get install ruby1.9.3
 
-# juju-log "installing ruby"
-# apt-get install ruby1.9.3
-
-# juju-log "installing bundler"
-# gem install bundler
+juju-log "installing bundler"
+gem install bundler
 
 juju-log "creating application dirs and log files"
 mkdir -p /home/application
