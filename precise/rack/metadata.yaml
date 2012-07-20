@@ -1,0 +1,4 @@
+name: sinatra
+summary: "Sinatra Framework"
+description: |
+    Install rackup based web frameworks, running with nginx and webrick.
