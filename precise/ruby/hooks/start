@@ -1,0 +1,6 @@
+#!/bin/bash
+
+APP_DIR=/home/application
+CURRENT_DIR=${APP_DIR}/current
+
+cd $CURRENT_DIR

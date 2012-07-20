@@ -1,0 +1,4 @@
+name: ruby
+summary: "Ruby 1.9.3"
+description: |
+    Install Ruby 1.9.3 and bundler
