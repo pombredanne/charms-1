@@ -1,5 +1,6 @@
 #!/bin/bash
 
+mkdir ${APP_DIR}/current
 cp -R ${CHARM_DIR}/utils/app ${APP_DIR}/current
 
 CHARM_DIR=/var/lib/tsuru
