@@ -5,7 +5,7 @@ CURRENT_DIR=${APP_DIR}/current
 
 cd $CURRENT_DIR
 
-if [ -f [ Procfile ]; then
+if [ -f Procfile ]; then
     `cat Procfile |cut -d: -f2` >> $APP_DIR/ruby-server.log 2>&1 &
     echo $! > $APP_DIR/ruby-server.pid
 else
