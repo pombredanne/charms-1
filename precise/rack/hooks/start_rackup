@@ -1,0 +1,14 @@
+#!/bin/bash
+
+mkdir ${APP_DIR}/current
+cp -R ${CHARM_DIR}/utils/app ${APP_DIR}/current
+
+CHARM_DIR=/var/lib/tsuru
+APP_DIR=/home/application
+
+if [ -d ${APP_DIR}/current ]
+then
+	$(cd ${APP_DIR}; rackup &)
+else
+    juju-log "skipping unicorn start: app not deployed yet"
+fi

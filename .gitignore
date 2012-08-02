@@ -1,3 +1,4 @@
 *.swp
 *.swo
 revision
+.DS_Store

@@ -1,0 +1,9 @@
+#!/bin/bash
+
+APP_DIR=/home/application
+CURRENT_DIR=${APP_DIR}/current
+
+cd $CURRENT_DIR
+node index.js >> $APP_DIR/node-server.log 2>&1 &
+
+echo $! > $APP_DIR/node-server.pid

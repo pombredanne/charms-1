@@ -1,0 +1,6 @@
+#! /bin/bash
+
+CHARM_DIR=/var/lib/tsuru
+
+$CHARM_DIR/hooks/stop
+$CHARM_DIR/hooks/start

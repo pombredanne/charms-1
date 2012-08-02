@@ -1,0 +1,11 @@
+#!/bin/bash -el
+
+APP_DIR=/home/application
+CURRENT_DIR=${APP_DIR}/current
+
+if [ -f ${CURRENT_DIR}/requirements.apt ]; then
+    sudo apt-get install $(cat ${CURRENT_DIR}/requirements.apt) -y
+fi
+
+pushd $CURRENT_DIR && bundle install --deployment
+popd
