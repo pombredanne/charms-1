@@ -1,7 +1,6 @@
 #!/bin/sh -el
 
 APP_DIR=/home/application
-VIRTUALENV=${APP_DIR}/env
 CURRENT_DIR=${APP_DIR}/current
 
 if [ -f ${CURRENT_DIR}/requirements.yum ]; then
@@ -9,5 +8,5 @@ if [ -f ${CURRENT_DIR}/requirements.yum ]; then
 fi
 
 if [ -f ${CURRENT_DIR}/requirements.txt ]; then
-    ${VIRTUALENV}/bin/pip install -r ${CURRENT_DIR}/requirements.txt
+    pip-python install -r ${CURRENT_DIR}/requirements.txt
 fi

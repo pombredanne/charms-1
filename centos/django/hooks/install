@@ -2,14 +2,13 @@
 
 user=ubuntu
 group=${user}
-VIRTUALENV=/home/application/env
 
 function lineNumber {
     grep "$2" -n "$1" | awk -F ':' '{print $1}'
 }
 
-juju-log "installing nginx and virtualenv"
-yum install nginx python-virtualenv --enablerepo=epel --assumeyes --quiet
+juju-log "installing nginx"
+yum install nginx --enablerepo=epel --assumeyes --quiet
 
 juju-log "creating application dirs and log files"
 # nginx conf
@@ -18,9 +17,8 @@ mkdir -p /home/application/static
 # creating the apprc file
 touch /home/application/apprc
 
-juju-log "creating the virtualenv and installing Django and gunicorn"
-virtualenv --unzip-setuptools ${VIRTUALENV}
-${VIRTUALENV}/bin/pip install django==1.3.1 gunicorn==0.13.4
+juju-log "installing Django and gunicorn"
+pip-python install django==1.3.1 gunicorn==0.13.4
 
 nginx_conf="${CHARM_DIR}/utils/nginx.conf"
 

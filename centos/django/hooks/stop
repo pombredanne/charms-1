@@ -1,4 +1,3 @@
 #!/bin/sh -e
 
-$CHARM_DIR/hooks/stop_gunicorn
 service nginx stop

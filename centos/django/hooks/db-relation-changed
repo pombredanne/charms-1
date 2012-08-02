@@ -1,3 +1,0 @@
-#!/bin/sh -e
-
-$CHARM_DIR/hooks/reload_gunicorn

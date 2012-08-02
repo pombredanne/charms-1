@@ -2,5 +2,3 @@
 
 service nginx start
 open-port 80
-
-$CHARM_DIR/hooks/start-gunicorn
