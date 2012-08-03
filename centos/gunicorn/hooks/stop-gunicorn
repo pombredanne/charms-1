@@ -1,0 +1,4 @@
+#!/bin/sh
+
+APP_DIR=/home/application
+[ -f ${APP_DIR}/gunicorn.pid ] && kill -TERM `cat ${APP_DIR}/gunicorn.pid`
