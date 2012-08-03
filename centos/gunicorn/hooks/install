@@ -8,7 +8,7 @@ function lineNumber {
 }
 
 juju-log "installing nginx"
-yum install nginx python-pip --enablerepo=epel --assumeyes --quiet
+yum install nginx python-pip --enablerepo=epel --assumeyes
 
 juju-log "creating application dirs and log files"
 # nginx conf
