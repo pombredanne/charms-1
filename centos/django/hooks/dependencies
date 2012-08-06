@@ -8,5 +8,5 @@ if [ -f ${CURRENT_DIR}/requirements.yum ]; then
 fi
 
 if [ -f ${CURRENT_DIR}/requirements.txt ]; then
-    pip-python install -r ${CURRENT_DIR}/requirements.txt
+    sudo pip-python install -r ${CURRENT_DIR}/requirements.txt
 fi
