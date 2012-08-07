@@ -4,9 +4,9 @@ APP_DIR=/home/application
 CURRENT_DIR=${APP_DIR}/current
 
 if [ -f ${CURRENT_DIR}/requirements.yum ]; then
-    sudo yum install $(cat ${CURRENT_DIR}/requirements.yum) --assumeyes --enablerepo=epel
+    sudo -E yum install $(cat ${CURRENT_DIR}/requirements.yum) --assumeyes --enablerepo=epel
 fi
 
 if [ -f ${CURRENT_DIR}/requirements.txt ]; then
-    sudo pip-python install -r ${CURRENT_DIR}/requirements.txt
+    sudo -E pip-python install -r ${CURRENT_DIR}/requirements.txt
 fi
