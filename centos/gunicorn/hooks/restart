@@ -10,7 +10,7 @@ fi
 
 $CHARM_DIR/hooks/stop-gunicorn
 
-if ! [ -z ${pid} ]
+if [ ${pid} ]
 then
     while [ -d /proc/${pid} ]
     do
