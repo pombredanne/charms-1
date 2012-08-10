@@ -6,12 +6,7 @@ APP_DIR=/home/application
 if [ -f ${APP_DIR}/gunicorn.pid ]
 then
     pid=`cat ${APP_DIR}/gunicorn.pid`
-fi
-
-$CHARM_DIR/hooks/stop-gunicorn
-
-if [ ${pid} ]
-then
+    $CHARM_DIR/hooks/stop-gunicorn
     while [ -d /proc/${pid} ]
     do
         sleep 1
