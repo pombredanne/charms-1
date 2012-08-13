@@ -11,7 +11,7 @@ then
     ENV_FILE=${APP_DIR}/apprc
     [ -f ${ENV_FILE} ] && source ${ENV_FILE}
     cd $APP_DIR/current/
-    gunicorn --daemon --workers=${NUM_WORKERS} --bind=127.0.0.1:8888 --pid=${APP_DIR}/gunicorn.pid wsgi:app --access-logfile=${APP_DIR}/gunicorn_access.log --error-logfile=${APP_DIR}/gunicorn_error.log
+    gunicorn --daemon --workers=${NUM_WORKERS} --bind=127.0.0.1:8888 --pid=${APP_DIR}/gunicorn.pid wsgi --access-logfile=${APP_DIR}/gunicorn_access.log --error-logfile=${APP_DIR}/gunicorn_error.log
     cd $OLDPWD
 else
     juju-log "skipping gunicorn start: app not deployed yet"
