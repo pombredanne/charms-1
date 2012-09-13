@@ -1,0 +1,23 @@
+#!/bin/bash -l
+
+set -u
+
+juju-log "installing ruby"
+yum install ruby rubygems --enablerepo=epel --assumeyes --quiet
+
+juju-log "installing bundler"
+gem install bundler
+
+juju-log "creating application dirs and log files"
+mkdir -p /home/application
+# creating the apprc file
+touch /home/application/apprc
+
+juju-log "creating releases dir"
+mkdir -p /home/application/releases
+
+juju-log "linking the charm"
+ln -s ${CHARM_DIR} /var/lib/tsuru
+
+sudo chown -R ubuntu:ubuntu /var/lib/tsuru/
+sudo chown -R ubuntu:ubuntu /home/application/
