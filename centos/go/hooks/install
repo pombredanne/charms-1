@@ -6,9 +6,26 @@ juju-log "installing mercurial and bzr"
 yum install bzr mercurial --enablerepo=epel --assumeyes --quiet
 
 juju-log "creating application dirs and log files"
-mkdir -p /home/application
+APPLICATION=/home/application
+mkdir -p $APPLICATION
 # creating the apprc file
-touch /home/application/apprc
+touch $APPLICATION/apprc
+
+juju-log "installing go"
+ver=1.0.2
+file=go$ver.linux-amd64.tar.gz
+url=http://go.googlecode.com/files/$file
+
+pushd $CURRENT_DIR
+    curl -sO $url
+    tar zxf $file
+    rm -f $file
+popd
+
+juju-log "exporting variables"
+GOROOT=$APPLICATION/go export GOROOT
+GOPATH=$APPLICATION/.go export GOPATH
+PATH=$GOROOT/bin:$PATH
 
 juju-log "creating releases dir"
 mkdir -p /home/application/releases
