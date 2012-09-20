@@ -8,6 +8,6 @@ if [ -f ${CURRENT_DIR}/requirements.yum ]; then
 fi
 
 if [ -f ${CURRENT_DIR}/Gemfile ]; then
-    pushd $CURRENT_DIR && bundle install --deployment --without test development
+    pushd $CURRENT_DIR && bundle install --deployment
     popd
 fi
