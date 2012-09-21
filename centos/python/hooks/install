@@ -1,0 +1,46 @@
+#!/bin/sh -el
+
+user=ubuntu
+group=${user}
+
+function lineNumber {
+    grep "$2" -n "$1" | awk -F ':' '{print $1}'
+}
+
+juju-log "checking network"
+while ! curl globo.com; do
+       printf "."
+       sleep 5
+done
+
+juju-log "installing nginx and pip"
+yum install nginx python-pip --enablerepo=epel --assumeyes
+
+juju-log "creating application dirs and log files"
+# nginx conf
+mkdir -p /home/application/static
+
+# creating the apprc file
+touch /home/application/apprc
+
+juju-log "installing gunicorn"
+pip-python install gunicorn
+
+nginx_conf="${CHARM_DIR}/utils/nginx.conf"
+
+juju-log "copying nginx config files"
+ln -s ${nginx_conf} /etc/nginx/conf.d/application.conf
+start=`lineNumber "/etc/nginx/nginx.conf" "^\s*server {"`
+end=`lineNumber "/etc/nginx/nginx.conf" "^\s*#\s\?Load config files"`
+if [ ! ${start} = "" ] && [ ! ${end} = "" ]
+then
+    start=`expr ${start} - 1`
+    end=`expr ${end} - 1`
+    sed -i.bkp ${start},${end}d /etc/nginx/nginx.conf
+fi
+
+juju-log "linking the charm"
+ln -s ${CHARM_DIR} /var/lib/tsuru
+
+sudo chown -R ${user}:${group} /var/lib/tsuru/
+sudo chown -R ${user}:${group} /home/application/
