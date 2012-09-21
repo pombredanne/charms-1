@@ -3,16 +3,16 @@
 APP_DIR=/home/application
 CURRENT_DIR=${APP_DIR}/current
 
-juju-log "running requirements.yum"
+echo "running requirements.yum"
 if [ -f ${CURRENT_DIR}/requirements.yum ]; then
     sudo -E yum install $(cat ${CURRENT_DIR}/requirements.yum) --assumeyes --enablerepo=epel
 fi
 
-juju-log "exporting variables"
+echo "exporting variables"
 GOROOT=$APPLICATION/go export GOROOT
 GOPATH=$APPLICATION/.go export GOPATH
 PATH=$GOROOT/bin:$PATH
 
-juju-log "executing go get"
+echo "executing go get"
 pushd $CURRENT_DIR && go get ./...
 popd
