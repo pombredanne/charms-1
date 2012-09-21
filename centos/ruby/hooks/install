@@ -5,6 +5,12 @@ set -u
 juju-log "installing ruby"
 yum install ruby rubygems --enablerepo=epel --assumeyes --quiet
 
+juju-log "installing rvm"
+curl https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer | bash -s stable
+
+juju-log "installing ruby 1.9.3"
+rvm install 1.9.3
+
 juju-log "installing bundler"
 gem install bundler
 
