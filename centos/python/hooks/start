@@ -1,22 +1,13 @@
-#!/bin/sh
+#!/bin/bash
 
-# set envinronment variables for the app
-CHARM_DIR=/var/lib/tsuru
 APP_DIR=/home/application
+CURRENT_DIR=${APP_DIR}/current
 
-if [ -d ${APP_DIR}/current ]
-then
-    ENV_FILE=${APP_DIR}/apprc
-    [ -f ${ENV_FILE} ] && source ${ENV_FILE}
-    cd $APP_DIR/current/
-    if [ -f wsgi.py ]
-    then
-        gunicorn --daemon --workers=${NUM_WORKERS} --bind=127.0.0.1:8888 --pid=${APP_DIR}/gunicorn.pid wsgi --access-logfile=${APP_DIR}/gunicorn_access.log --error-logfile=${APP_DIR}/gunicorn_error.log
-    else
-        echo "ERROR: failed to start gunicorn. wsgi.py must be located at the app root directory"
-        exit 1
+if [ -d $CURRENT_DIR ]; then
+    cd $CURRENT_DIR
+    if [ -f Procfile ]; then
+        `cat Procfile |cut -d: -f2` >> $APP_DIR/python.log 2>&1 &
+        echo $! > $APP_DIR/python.pid
     fi
-    cd $OLDPWD
-else
-    juju-log "skipping gunicorn start: app not deployed yet"
+    cd -
 fi
