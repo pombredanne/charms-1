@@ -17,6 +17,7 @@ juju-log "installing nginx and pip"
 yum install python-pip --enablerepo=epel --assumeyes
 
 # creating the apprc file
+mkdir -p /home/application
 touch /home/application/apprc
 
 juju-log "linking the charm"
