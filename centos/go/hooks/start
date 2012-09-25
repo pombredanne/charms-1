@@ -12,6 +12,6 @@ if [ -d ${CURRENT_DIR} ]; then
     cd ${CURRENT_DIR}
         BIN=$(basename `pwd`)
         go build
-        ./${BIN}
+        ./${BIN} &
     cd -
 fi
