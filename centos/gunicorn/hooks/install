@@ -21,6 +21,9 @@ juju-log "creating application dirs and log files"
 # Cleanup /etc/nginx/conf.d/*.conf
 rm -rf /etc/nginx/conf.d/*.conf
 
+# Touch a example file for locations
+touch /etc/nginx/conf.d/locations.conf
+
 # nginx conf
 mkdir -p /home/application/static
 
