@@ -17,6 +17,10 @@ juju-log "installing nginx and pip"
 yum install nginx python-pip --enablerepo=epel --assumeyes
 
 juju-log "creating application dirs and log files"
+
+# Cleanup /etc/nginx/conf.d/*.conf
+rm -rf /etc/nginx/conf.d/*.conf
+
 # nginx conf
 mkdir -p /home/application/static
 
