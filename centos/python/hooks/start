@@ -6,7 +6,7 @@ CURRENT_DIR=${APP_DIR}/current
 if [ -d $CURRENT_DIR ]; then
     cd $CURRENT_DIR
     if [ -f Procfile ]; then
-        `cat Procfile |cut -d: -f2` >> $APP_DIR/python.log 2>&1 &
+        eval `cat Procfile|cut -d: -f2-` >> $APP_DIR/python.log 2>&1 &
         echo $! > $APP_DIR/python.pid
     fi
     cd -
