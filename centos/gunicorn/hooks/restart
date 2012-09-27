@@ -22,3 +22,4 @@ then
 fi
 
 $CHARM_DIR/hooks/start-gunicorn
+sudo service nginx reload
