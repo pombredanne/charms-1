@@ -5,11 +5,11 @@ APP_DIR=/home/application
 
 # remove locations.conf file if exist
 [ -f /etc/nginx/conf.d/locations.conf ] && \
-    rm -rf /etc/nginx/conf.d/locations.conf
+    sudo rm -rf /etc/nginx/conf.d/locations.conf
 
 # Copy locations.conf file from git to conf.d if exist
 [ -f ${APP_DIR}/current/locations.conf ] && \
-    cp ${APP_DIR}/current/locations.conf /etc/nginx/conf.d
+    sudo cp ${APP_DIR}/current/locations.conf /etc/nginx/conf.d
 
 if [ -f ${APP_DIR}/gunicorn.pid ]
 then
