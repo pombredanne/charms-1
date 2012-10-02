@@ -14,7 +14,7 @@ while ! curl globo.com; do
 done
 
 juju-log "installing nginx and pip"
-apt-get install python-pip
+apt-get install python-pip -y
 
 # creating the apprc file
 mkdir -p /home/application
