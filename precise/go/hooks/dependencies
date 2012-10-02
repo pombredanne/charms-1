@@ -1,0 +1,18 @@
+#!/bin/bash -el
+
+APPLICATION=/home/application
+CURRENT_DIR=${APPLICATION}/current
+
+echo "running requirements.apt"
+if [ -f ${CURRENT_DIR}/requirements.apt ]; then
+    sudo -E apt-get install $(cat ${CURRENT_DIR}/requirements.apt) -y
+fi
+
+echo "exporting variables"
+GOROOT=${APPLICATION}/go export GOROOT
+GOPATH=${APPLICATION}/.go export GOPATH
+PATH=${GOROOT}/bin:${PATH}
+
+echo "executing go get"
+pushd ${CURRENT_DIR} && go get ./...
+popd

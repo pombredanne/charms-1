@@ -1,0 +1,20 @@
+#!/bin/bash
+
+APPLICATION=/home/application
+CURRENT_DIR=${APPLICATION}/current
+
+echo "exporting variables"
+GOROOT=${APPLICATION}/go export GOROOT
+GOPATH=${APPLICATION}/.go export GOPATH
+PATH=${GOROOT}/bin:${PATH}
+
+ENV_FILE=${APPLICATION}/apprc
+[ -f ${ENV_FILE} ] && source ${ENV_FILE}
+
+if [ -d ${CURRENT_DIR} ]; then
+    cd ${CURRENT_DIR}
+        BIN=$(basename `pwd`)
+        go build
+        ./${BIN} &
+    cd -
+fi
