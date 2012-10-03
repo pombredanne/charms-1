@@ -3,16 +3,6 @@
 user=ubuntu
 group=${user}
 
-function lineNumber {
-    grep "$2" -n "$1" | awk -F ':' '{print $1}'
-}
-
-juju-log "checking network"
-while ! curl globo.com; do
-       printf "."
-       sleep 5
-done
-
 juju-log "installing nginx and pip"
 apt-get install nginx python-pip -y
 
