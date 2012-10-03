@@ -2,8 +2,8 @@
 
 set -u
 
-juju-log "installing make and g++"
-apt-get install -qqy make g++
+juju-log "installing make, g++ and git"
+apt-get install -qqy make g++ git
 
 cd /tmp
 

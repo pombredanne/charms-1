@@ -2,6 +2,9 @@
 
 set -u
 
+juju-log "installing git"
+apt-get install -qqy git
+
 juju-log "installing make"
 apt-get install -qqy make
 

@@ -3,7 +3,7 @@
 set -eu
 
 juju-log "installing nginx and ruby"
-apt-get install -qqy nginx ruby1.9.3
+apt-get install -qqy nginx ruby1.9.3 git
 
 juju-log "creating application dirs and log files"
 # nginx conf
