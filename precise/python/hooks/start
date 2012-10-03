@@ -3,9 +3,7 @@
 APP_DIR=/home/application
 CURRENT_DIR=${APP_DIR}/current
 
-if [ -f $APP_DIR/apprc ]; then
-    source $APP_DIR/apprc
-fi
+[ -f $APP_DIR/apprc ] && source $APP_DIR/apprc
 
 if [ -d $CURRENT_DIR ]; then
     cd $CURRENT_DIR
