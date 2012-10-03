@@ -21,7 +21,7 @@ mkdir -p /home/application/static
 touch /home/application/apprc
 
 juju-log "installing gunicorn"
-pip-python install gunicorn
+pip install gunicorn
 
 nginx_conf="${CHARM_DIR}/utils/nginx.conf"
 
