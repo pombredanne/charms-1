@@ -1,5 +1,0 @@
-#!/bin/bash
-
-set -eu
-
-$CHARM_DIR/hooks/reload_gunicorn

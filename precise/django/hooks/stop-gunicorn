@@ -1,5 +1,0 @@
-#!/bin/bash
-
-APP_DIR=/home/application
-
-[ -f ${APP_DIR}/gunicorn.pid ] && kill -9 `cat ${APP_DIR}/gunicorn.pid`

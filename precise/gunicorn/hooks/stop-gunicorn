@@ -1,5 +1,0 @@
-#!/bin/sh
-
-APP_DIR=/home/application
-pid=`cat ${APP_DIR}/gunicorn.pid`
-[ -d /proc/${pid} ] && kill -TERM ${pid} || echo "WARNING: gunicorn not running, skipping stop-gunicorn."

@@ -1,4 +1,0 @@
-#!/bin/sh -e
-
-service nginx start
-open-port 80
