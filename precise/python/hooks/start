@@ -3,13 +3,19 @@
 APP_DIR=/home/application
 CURRENT_DIR=${APP_DIR}/current
 
-[ -f $APP_DIR/apprc ] && source $APP_DIR/apprc
+[ -f ${APP_DIR}/apprc ] && source ${APP_DIR}/apprc
 
-if [ -d $CURRENT_DIR ]; then
-    cd $CURRENT_DIR
-    if [ -f Procfile ]; then
-        eval "`cat Procfile|cut -d: -f2-` >> $APP_DIR/python.log 2>&1 &"
+if [ -d ${CURRENT_DIR} ]
+then
+    cd ${CURRENT_DIR}
+    if [ -f Procfile ]
+    then
+        eval "`cat Procfile|cut -d: -f2-` > ${APP_DIR}/python.log 2>&1 &"
         echo $! > $APP_DIR/python.pid
+        if ! [ -d /proc/`cat ${APP_DIR}/python.pid` ]
+        then
+            cat ${APP_DIR}/python.log
+        fi
     fi
     cd -
 fi
