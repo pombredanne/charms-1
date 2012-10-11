@@ -1,6 +1,6 @@
 #charms
 
-collection of charms used by the team. Currently available charms:
+Collection of charms used by tsuru.
 
 Creating charms
 ---------------
