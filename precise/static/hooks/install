@@ -7,6 +7,12 @@ group=${user}
 juju-log "installing nginx and git"
 apt-get install nginx git -y
 
+# removing the default docroot
+mv /usr/share/nginx/www /usr/share/nginx/old
+
+# creating the new docroot
+ln -s /home/application/current /usr/share/nginx/www
+
 # creating the apprc file
 mkdir -p /home/application
 touch /home/application/apprc
