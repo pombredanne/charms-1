@@ -1,0 +1,18 @@
+
+#!/bin/sh -el
+
+user=ubuntu
+group=${user}
+
+juju-log "installing nginx and git"
+apt-get install nginx git -y
+
+# creating the apprc file
+mkdir -p /home/application
+touch /home/application/apprc
+
+juju-log "linking the charm"
+ln -s ${CHARM_DIR} /var/lib/tsuru
+
+sudo chown -R ${user}:${group} /var/lib/tsuru/
+sudo chown -R ${user}:${group} /home/application/

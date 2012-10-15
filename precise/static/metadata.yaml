@@ -1,0 +1,4 @@
+name: static
+summary: "Static apps."
+description: |
+    Deploy static apps.

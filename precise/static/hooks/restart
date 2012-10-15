@@ -1,0 +1,16 @@
+#!/bin/sh
+
+CHARM_DIR=/var/lib/tsuru
+APP_DIR=/home/application
+
+if [ -f ${APP_DIR}/python.pid ]
+then
+    pid=`cat ${APP_DIR}/python.pid`
+    $CHARM_DIR/hooks/stop
+    while [ -d /proc/${pid} ]
+    do
+        sleep 1
+    done
+fi
+
+$CHARM_DIR/hooks/start
