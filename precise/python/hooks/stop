@@ -2,4 +2,5 @@
 
 APP_DIR=/home/application
 pid=`cat ${APP_DIR}/python.pid`
+echo "Stopping..."
 [ -d /proc/${pid} ] && kill -TERM ${pid} || echo "WARNING: python not running."
