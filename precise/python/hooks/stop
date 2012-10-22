@@ -1,6 +1,6 @@
 #!/bin/sh
 
 APP_DIR=/home/application
-pid=`cat ${APP_DIR}/python.pid`
+pid=`cat ${APP_DIR}/foreman.pid`
 echo "Stopping..."
 [ -d /proc/${pid} ] && kill -TERM ${pid} || echo "WARNING: python not running."
