@@ -10,6 +10,7 @@ gem install foreman -q --no-rdoc --no-ri
 # creating the apprc file
 mkdir -p /home/application
 touch /home/application/apprc
+touch /home/application/foreman.log
 
 juju-log "linking the charm"
 ln -s ${CHARM_DIR} /var/lib/tsuru
