@@ -11,7 +11,7 @@ then
     if [ -f Procfile ]
     then
         echo "Starting..."
-        foreman start > ${APP_DIR}/foreman.log 2>&1 &"
+        foreman start > ${APP_DIR}/foreman.log 2>&1 &
         echo $! > $APP_DIR/foreman.pid
         cat ${APP_DIR}/foreman.log
     else
