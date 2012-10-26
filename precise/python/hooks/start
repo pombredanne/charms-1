@@ -10,10 +10,11 @@ then
     cd ${CURRENT_DIR}
     if [ -f Procfile ]
     then
+        echo "Checking Procfile"
+        foreman check
         echo "Starting..."
-        foreman start >> ${APP_DIR}/foreman.log 2>&1 &
-        echo $! > $APP_DIR/foreman.pid
-        [ -f ${APP_DIR}/foreman.log ] && cat ${APP_DIR}/foreman.log
+        sudo foreman export upstart -u ubuntu /etc/init
+        sudo start app
     else
         echo "Procfile not found!"
     fi
