@@ -1,4 +1,4 @@
 #!/bin/sh
 
 echo "Stopping..."
-sudo stop app
+killall -9 circusd
