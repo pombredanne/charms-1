@@ -12,9 +12,10 @@ then
     then
         echo "Checking Procfile"
         foreman check
+        circus_conf=/var/lib/tsuru/utils/circus.ini
         cp ${circus_conf} /home/application/circus.ini
         CMD="cd /home/application/current;"
-        CMD2=cat Procfile|cut -d: -f2-
+        CMD2=`cat Procfile|cut -d: -f2-`
         CMD3=${CMD} ${CMD2}
         sed -i "s/CMD/${CMD3}/g" /home/application/circus.ini
         echo "Starting..."
