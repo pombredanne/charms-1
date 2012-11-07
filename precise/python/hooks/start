@@ -16,8 +16,8 @@ then
         cp ${circus_conf} /home/application/circus.ini
         CMD="cd /home/application/current;"
         CMD2=`cat Procfile|cut -d: -f2-`
-        CMD3=${CMD} ${CMD2}
-        sed -i "s/CMD/${CMD3}/g" /home/application/circus.ini
+        CMD3="${CMD} ${CMD2}"
+        sed -i "s,CMD,${CMD3},g" /home/application/circus.ini
         echo "Starting..."
         # sudo foreman export upstart -u ubuntu /etc/init
         circusd /home/application/circus.ini &
