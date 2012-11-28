@@ -12,7 +12,7 @@ mkdir -p $APPLICATION
 touch $APPLICATION/apprc
 
 juju-log "installing go"
-ver=1.0.2
+ver=1.0.3
 file=go$ver.linux-amd64.tar.gz
 url=http://go.googlecode.com/files/$file
 
