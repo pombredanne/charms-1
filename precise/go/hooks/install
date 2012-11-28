@@ -25,7 +25,7 @@ popd
 juju-log "exporting variables"
 GOROOT=$APPLICATION/go export GOROOT
 GOPATH=$APPLICATION/.go export GOPATH
-PATH=$GOROOT/bin:$PATH
+PATH=$GOROOT/bin:$GOPATH/bin:$PATH
 
 juju-log "creating releases dir"
 mkdir -p /home/application/releases
