@@ -8,7 +8,7 @@ apt-get install python-pip git ruby rubygems python-dev -y
 gem install foreman -q --no-rdoc --no-ri
 
 juju-log "installing circus"
-pip install circus
+pip install git+https://github.com/mozilla-services/circus.git
 
 juju-log "installing tsuru-circus"
 pip install tsuru-circus
