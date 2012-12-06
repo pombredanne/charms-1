@@ -28,6 +28,9 @@ ln -s ${CHARM_DIR} /var/lib/tsuru
 sudo chown -R ${user}:${group} /var/lib/tsuru/
 sudo chown -R ${user}:${group} /home/application/
 
+juju-log "removing the default nginx conf"
+sudo rm /etc/nginx/sites-enabled/default
+
 juju-log "configuring nginx"
 nginx_conf="${CHARM_DIR}/utils/nginx.conf"
 
