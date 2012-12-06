@@ -23,3 +23,5 @@ ln -s ${CHARM_DIR} /var/lib/tsuru
 
 sudo chown -R ${user}:${group} /var/lib/tsuru/
 sudo chown -R ${user}:${group} /home/application/
+
+service nginx start
