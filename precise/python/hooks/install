@@ -3,6 +3,10 @@
 user=ubuntu
 group=${user}
 
+function lineNumber {
+    grep "$2" -n "$1" | awk -F ':' '{print $1}'
+}
+
 juju-log "installing nginx and pip"
 apt-get install nginx python-pip git ruby rubygems python-dev -y
 gem install foreman -q --no-rdoc --no-ri
@@ -24,4 +28,18 @@ ln -s ${CHARM_DIR} /var/lib/tsuru
 sudo chown -R ${user}:${group} /var/lib/tsuru/
 sudo chown -R ${user}:${group} /home/application/
 
+juju-log "configuring nginx"
+nginx_conf="${CHARM_DIR}/utils/nginx.conf"
+
+ln -s ${nginx_conf} /etc/nginx/conf.d/application.conf
+start=`lineNumber "/etc/nginx/nginx.conf" "^\s*server {"`
+end=`lineNumber "/etc/nginx/nginx.conf" "^\s*#\s\?Load config files"`
+if [ ! ${start} = "" ] && [ ! ${end} = "" ]
+then
+    start=`expr ${start} - 1`
+    end=`expr ${end} - 1`
+    sed -i.bkp ${start},${end}d /etc/nginx/nginx.conf
+
+
+juju-log "starting nginx"
 service nginx start
