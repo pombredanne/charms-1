@@ -1,4 +1,5 @@
 #!/bin/sh
 
 echo "Stopping..."
+circusctl stop
 killall -9 circusd
