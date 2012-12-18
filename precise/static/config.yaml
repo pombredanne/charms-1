@@ -1,0 +1,5 @@
+options:
+  app-repo:
+    type: string
+    default: ""
+    description: "Git repository for the app."
