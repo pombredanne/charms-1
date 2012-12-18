@@ -26,7 +26,9 @@ repository=`config-get app-repo`
 
 if [ "$repository" ]
 then
+	juju-log "Cloning $repository into /home/application/current"
 	git clone --depth 1 $repository /home/application/current
+	juju-log "Installing dependencies..."
 	${CHARM_DIR}/hooks/dependencies
 fi
 
