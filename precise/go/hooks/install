@@ -3,7 +3,7 @@
 set -u
 
 juju-log "installing mercurial, bzr and git"
-apt-get install bzr mercurial git -y -q
+apt-get install bzr mercurial git bzr -y -q
 
 juju-log "creating application dirs and log files"
 APPLICATION=/home/application
@@ -22,13 +22,18 @@ pushd $APPLICATION
     rm -f $file
 popd
 
-juju-log "exporting variables"
-GOROOT=$APPLICATION/go export GOROOT
-GOPATH=$APPLICATION/.go export GOPATH
+juju-log "defining GOROOT and GOPATH"
+GOROOT=$APPLICATION/go
+GOPATH=$APPLICATION/.go
 PATH=$GOROOT/bin:$GOPATH/bin:$PATH
 
-juju-log "creating releases dir"
-mkdir -p /home/application/releases
+repository=`config-get app-repo`
+
+if [ "$repository" ]
+then
+	git clone --depth 1 $repository /home/application/current
+	${CHARM_DIR}/hooks/dependencies
+fi
 
 juju-log "linking the charm"
 ln -s ${CHARM_DIR} /var/lib/tsuru
