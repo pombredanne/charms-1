@@ -22,6 +22,14 @@ mkdir -p /home/application
 touch /home/application/apprc
 touch /home/application/foreman.log
 
+repository=`config-get app-repo`
+
+if [ "$repository" ]
+then
+	git clone --depth 1 $repository /home/application/current
+	${CHARM_DIR}/hooks/dependencies
+fi
+
 juju-log "linking the charm"
 ln -s ${CHARM_DIR} /var/lib/tsuru
 
