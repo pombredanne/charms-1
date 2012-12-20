@@ -18,7 +18,7 @@ then
         sed -i "s,CMD,${CMD},g" /home/application/circus.ini
         echo "Starting..."
         # sudo foreman export upstart -u ubuntu /etc/init
-        circusd /home/application/circus.ini > /dev/null 2>&1 &
+        circusd /home/application/circus.ini > /home/application/circus.log 2>&1 &
     else
         echo "Procfile not found!"
     fi
