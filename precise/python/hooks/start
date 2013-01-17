@@ -8,6 +8,8 @@ CURRENT_DIR=${APP_DIR}/current
 if [ -d ${CURRENT_DIR} ]
 then
     cd ${CURRENT_DIR}
+    find . -name \*.pyc -delete
+    find . -name \*.pyo -delete
     if [ -f Procfile ]
     then
         echo "Checking Procfile"
