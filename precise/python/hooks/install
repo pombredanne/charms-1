@@ -3,10 +3,6 @@
 user=ubuntu
 group=${user}
 
-function lineNumber {
-    grep "$2" -n "$1" | awk -F ':' '{print $1}'
-}
-
 juju-log "installing nginx and pip"
 apt-get install nginx python-pip git ruby rubygems python-dev -y
 gem install foreman -q --no-rdoc --no-ri
