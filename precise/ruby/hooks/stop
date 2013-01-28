@@ -1,6 +1,5 @@
-#!/bin/bash
+#!/bin/sh
 
-APP_DIR=/home/application
-CURRENT_DIR=${APP_DIR}/current
-
-kill -9 $(cat $APP_DIR/ruby-server.pid)
+echo "Stopping..."
+circusctl stop
+killall -9 circusd
