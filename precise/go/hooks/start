@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 
 APPLICATION=/home/application
 CURRENT_DIR=${APPLICATION}/current
@@ -12,9 +12,8 @@ ENV_FILE=${APPLICATION}/apprc
 [ -f ${ENV_FILE} ] && source ${ENV_FILE}
 
 if [ -d ${CURRENT_DIR} ]; then
-    cd ${CURRENT_DIR}
-        BIN=$(basename `pwd`)
-        go build
-        ./${BIN} &
-    cd -
+    pushd ${CURRENT_DIR}
+        go build -o tsuru-app
+	./tsuru-app &
+    popd
 fi

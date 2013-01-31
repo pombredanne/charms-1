@@ -3,12 +3,12 @@
 APPLICATION=/home/application
 CURRENT_DIR=${APPLICATION}/current
 
-echo "running requirements.apt"
+echo "installing apt-get dependencies from requirements.apt"
 if [ -f ${CURRENT_DIR}/requirements.apt ]; then
     sudo -E apt-get install $(cat ${CURRENT_DIR}/requirements.apt) -y
 fi
 
-echo "exporting variables"
+echo "setting variables"
 GOROOT=${APPLICATION}/go
 GOPATH=${APPLICATION}/.go
 PATH=${GOROOT}/bin:${PATH}

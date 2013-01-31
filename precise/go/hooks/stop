@@ -1,11 +1,3 @@
 #!/bin/bash
 
-APP_DIR=/home/application
-CURRENT_DIR=${APP_DIR}/current
-
-if [ -d $CURRENT_DIR ]; then
-    cd $CURRENT_DIR
-    BIN=$(basename `pwd`)
-    killall -9 $BIN || echo "WARNING: project not running, skipping project"
-    cd -
-fi
+killall -9 tsuru-app || echo "WARNING: project not running, skipping stop"

@@ -1,9 +1,7 @@
-#!/bin/bash -l
-
-set -u
+#!/bin/bash -lu
 
 juju-log "installing mercurial, bzr and git"
-apt-get install bzr mercurial git bzr -y -q
+apt-get install bzr mercurial git bzr -qqy
 
 juju-log "creating application dirs and log files"
 APPLICATION=/home/application
