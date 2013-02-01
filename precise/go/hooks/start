@@ -3,9 +3,10 @@
 APPLICATION=/home/application
 CURRENT_DIR=${APPLICATION}/current
 
-GOPATH=${APPLICATION}/.go export GOPATH
-PATH=${GOPATH}/bin:${PATH}
-export PATH GOPATH
+GOROOT=${APPLICATION}/go
+GOPATH=${APPLICATION}/.go
+PATH=${GOROOT}/bin:${GOPATH}/bin:${PATH}
+export PATH GOPATH GOROOT
 
 ENV_FILE=${APPLICATION}/apprc
 [ -f ${ENV_FILE} ] && source ${ENV_FILE}

@@ -7,8 +7,9 @@ if [ -f ${CURRENT_DIR}/requirements.apt ]; then
 	sudo -E apt-get install $(cat ${CURRENT_DIR}/requirements.apt) -y
 fi
 
+GOROOT=${APPLICATION}/go
 GOPATH=${APPLICATION}/.go
-PATH=${GOPATH}/bin:${PATH}
-export GOPATH PATH
+PATH=${GOROOT}/bin:${GOPATH}/bin:${PATH}
+export GOPATH GOROOT PATH
 
 cd ${CURRENT_DIR} && go get ./...
