@@ -20,11 +20,6 @@ pushd $APPLICATION
     rm -f $file
 popd
 
-juju-log "defining GOROOT and GOPATH"
-GOROOT=$APPLICATION/go
-GOPATH=$APPLICATION/.go
-PATH=$GOROOT/bin:$GOPATH/bin:$PATH
-
 repository=`config-get app-repo`
 
 if [ "$repository" ]

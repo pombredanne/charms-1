@@ -3,10 +3,9 @@
 APPLICATION=/home/application
 CURRENT_DIR=${APPLICATION}/current
 
-echo "exporting variables"
-GOROOT=${APPLICATION}/go export GOROOT
 GOPATH=${APPLICATION}/.go export GOPATH
-PATH=${GOROOT}/bin:${PATH}
+PATH=${GOPATH}/bin:${PATH}
+export PATH GOPATH
 
 ENV_FILE=${APPLICATION}/apprc
 [ -f ${ENV_FILE} ] && source ${ENV_FILE}
