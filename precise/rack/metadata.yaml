@@ -1,4 +1,0 @@
-name: rack
-summary: "Rack Framework"
-description: |
-    Install rackup based web frameworks, running with nginx and webrick.
