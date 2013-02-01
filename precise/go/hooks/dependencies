@@ -4,7 +4,7 @@ APPLICATION=/home/application
 CURRENT_DIR=${APPLICATION}/current
 
 if [ -f ${CURRENT_DIR}/requirements.apt ]; then
-    sudo -E apt-get install $(cat ${CURRENT_DIR}/requirements.apt) -y
+	sudo -E apt-get install $(cat ${CURRENT_DIR}/requirements.apt) -y
 fi
 
 GOPATH=${APPLICATION}/.go

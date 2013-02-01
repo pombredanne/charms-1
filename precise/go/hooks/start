@@ -11,8 +11,7 @@ ENV_FILE=${APPLICATION}/apprc
 [ -f ${ENV_FILE} ] && source ${ENV_FILE}
 
 if [ -d ${CURRENT_DIR} ]; then
-    pushd ${CURRENT_DIR}
-        go build -o tsuru-app
+	cd ${CURRENT_DIR}
+	go build -o tsuru-app
 	./tsuru-app &
-    popd
 fi
