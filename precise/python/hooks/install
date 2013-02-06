@@ -3,6 +3,10 @@
 user=ubuntu
 group=${user}
 
+juju-log "adding ppas"
+add-apt-repository ppa:roman-imankulov/circus -y
+apt-get update
+
 juju-log "installing nginx, pip, python-dev and circus"
 apt-get install nginx python-pip git python-dev circus -y
 
@@ -12,7 +16,6 @@ pip install tsuru-circus
 # creating the apprc file
 mkdir -p /home/application
 touch /home/application/apprc
-touch /home/application/foreman.log
 
 repository=`config-get app-repo`
 
