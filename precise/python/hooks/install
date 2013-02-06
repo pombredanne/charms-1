@@ -4,7 +4,7 @@ user=ubuntu
 group=${user}
 
 juju-log "installing nginx, pip, python-dev"
-apt-get install nginx python-pip git python-dev -y
+apt-get install nginx python-pip git python-dev libzmq-dev g++ -y
 
 juju-log "installing circus"
 pip install circus
