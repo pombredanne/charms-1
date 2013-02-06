@@ -3,12 +3,11 @@
 user=ubuntu
 group=${user}
 
-juju-log "adding ppas"
-add-apt-repository ppa:roman-imankulov/circus -y
-apt-get update
+juju-log "installing nginx, pip, python-dev"
+apt-get install nginx python-pip git python-dev -y
 
-juju-log "installing nginx, pip, python-dev and circus"
-apt-get install nginx python-pip git python-dev circus -y
+juju-log "installing circus"
+pip install circus
 
 juju-log "installing tsuru-circus"
 pip install tsuru-circus
@@ -49,4 +48,4 @@ circus_conf=/var/lib/tsuru/utils/circus.ini
 cp ${circus_conf} /etc/circus/circus.ini
 
 juju-log "starting circus"
-start circus
+circusd /etc/circus/circus.init --daemon
