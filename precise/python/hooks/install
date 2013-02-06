@@ -3,12 +3,8 @@
 user=ubuntu
 group=${user}
 
-juju-log "installing nginx and pip"
-apt-get install nginx python-pip git ruby rubygems python-dev -y
-gem install foreman -q --no-rdoc --no-ri
-
-juju-log "installing circus"
-pip install circus
+juju-log "installing nginx, pip, python-dev and circus"
+apt-get install nginx python-pip git python-dev circus -y
 
 juju-log "installing tsuru-circus"
 pip install tsuru-circus
@@ -44,3 +40,10 @@ ln -s ${nginx_conf} /etc/nginx/sites-enabled/app.conf
 
 juju-log "starting nginx"
 service nginx start
+
+juju-log "configuring circus"
+circus_conf=/var/lib/tsuru/utils/circus.ini
+cp ${circus_conf} /etc/circus/circus.ini
+
+juju-log "starting circus"
+start circus

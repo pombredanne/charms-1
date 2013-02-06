@@ -10,18 +10,7 @@ then
     cd ${CURRENT_DIR}
     find . -name \*.pyc -delete
     find . -name \*.pyo -delete
-    if [ -f Procfile ]
-    then
-        echo "Checking Procfile"
-        foreman check
-        circus_conf=/var/lib/tsuru/utils/circus.ini
-        cp ${circus_conf} /home/application/circus.ini
-        CMD=`cat Procfile|cut -d: -f2-`
-        sed -i "s,CMD,${CMD},g" /home/application/circus.ini
-        echo "Starting..."
-        # sudo foreman export upstart -u ubuntu /etc/init
-        sudo -u ubuntu -E circusd /home/application/circus.ini > /dev/null 2>&1 &
-    else
-        echo "Procfile not found!"
-    fi
+    echo "Starting..."
+    circusctl stop
+    circusctl start
 fi
