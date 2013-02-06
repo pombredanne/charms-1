@@ -27,25 +27,26 @@ then
 fi
 
 juju-log "linking the charm"
-ln -s ${CHARM_DIR} /var/lib/tsuru
+[ -d /var/lib/tsuru ] || ln -s ${CHARM_DIR} /var/lib/tsuru
 
 sudo chown -R ${user}:${group} /var/lib/tsuru/
 sudo chown -R ${user}:${group} /home/application/
 
 juju-log "removing the default nginx conf"
-sudo rm /etc/nginx/sites-enabled/default
+[ -f /etc/nginx/sites-enabled/default ] && sudo rm /etc/nginx/sites-enabled/default
 
 juju-log "configuring nginx"
 nginx_conf="${CHARM_DIR}/utils/nginx.conf"
 
-ln -s ${nginx_conf} /etc/nginx/sites-enabled/app.conf
+[ -f /etc/nginx/sites-enabled/app.conf ] || ln -s ${nginx_conf} /etc/nginx/sites-enabled/app.conf
 
 juju-log "starting nginx"
 service nginx start
 
 juju-log "configuring circus"
 circus_conf=/var/lib/tsuru/utils/circus.ini
+mkdir -p /etc/circus
 cp ${circus_conf} /etc/circus/circus.ini
 
 juju-log "starting circus"
-circusd /etc/circus/circus.init --daemon
+circusd /etc/circus/circus.ini --daemon
