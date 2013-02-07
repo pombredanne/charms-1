@@ -1,16 +1,10 @@
 #!/bin/bash
 
-APP_DIR=/home/application
-CURRENT_DIR=${APP_DIR}/current
+export TSURU_HOST=`config-get tsuru-host`
+export TSURU_APPNAME=`config-get tsuru-appname`
 
-[ -f ${APP_DIR}/apprc ] && source ${APP_DIR}/apprc
+juju-log "starting nginx"
+service nginx start
 
-if [ -d ${CURRENT_DIR} ]
-then
-    cd ${CURRENT_DIR}
-    find . -name \*.pyc -delete
-    find . -name \*.pyo -delete
-    echo "Starting..."
-    circusctl stop
-    circusctl start
-fi
+juju-log "starting circus"
+circusd /etc/circus/circus.ini --daemon

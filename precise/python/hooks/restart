@@ -1,7 +1,16 @@
-#!/bin/sh
+#!/bin/bash
 
-CHARM_DIR=/var/lib/tsuru
 APP_DIR=/home/application
+CURRENT_DIR=${APP_DIR}/current
 
-$CHARM_DIR/hooks/stop
-$CHARM_DIR/hooks/start
+[ -f ${APP_DIR}/apprc ] && source ${APP_DIR}/apprc
+
+if [ -d ${CURRENT_DIR} ]
+then
+    cd ${CURRENT_DIR}
+    find . -name \*.pyc -delete
+    find . -name \*.pyo -delete
+    echo "Starting..."
+    circusctl stop
+    circusctl start
+fi

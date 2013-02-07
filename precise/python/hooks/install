@@ -16,8 +16,6 @@ pip install tsuru-circus
 mkdir -p /home/application
 touch /home/application/apprc
 
-export TSURU_HOST=`config-get tsuru-host`
-export TSURU_APPNAME=`config-get tsuru-appname`
 repository=`config-get app-repo`
 
 if [ "$repository" ]
@@ -42,13 +40,7 @@ nginx_conf="${CHARM_DIR}/utils/nginx.conf"
 
 [ -f /etc/nginx/sites-enabled/app.conf ] || ln -s ${nginx_conf} /etc/nginx/sites-enabled/app.conf
 
-juju-log "starting nginx"
-service nginx start
-
 juju-log "configuring circus"
 circus_conf=/var/lib/tsuru/utils/circus.ini
 mkdir -p /etc/circus
 cp ${circus_conf} /etc/circus/circus.ini
-
-juju-log "starting circus"
-circusd /etc/circus/circus.ini --daemon
