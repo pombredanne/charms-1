@@ -5,6 +5,9 @@ CURRENT_DIR=${APP_DIR}/current
 
 [ -f ${APP_DIR}/apprc ] && source ${APP_DIR}/apprc
 
+export TSURU_HOST=`config-get tsuru-host`
+export TSURU_APPNAME=`config-get tsuru-appname`
+
 if [ -d ${CURRENT_DIR} ]
 then
     cd ${CURRENT_DIR}
