@@ -1,6 +1,17 @@
-#! /bin/bash
+#!/bin/bash
 
-CHARM_DIR=/var/lib/tsuru
+APP_DIR=/home/application
+CURRENT_DIR=${APP_DIR}/current
 
-$CHARM_DIR/hooks/stop
-$CHARM_DIR/hooks/start
+[ -f ${APP_DIR}/apprc ] && source ${APP_DIR}/apprc
+
+export TSURU_HOST=`config-get tsuru-host`
+export TSURU_APPNAME=`config-get tsuru-appname`
+
+if [ -d ${CURRENT_DIR} ]
+then
+    cd ${CURRENT_DIR}
+    echo "Starting..."
+    circusctl stop
+    circusctl start
+fi

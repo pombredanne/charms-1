@@ -3,23 +3,29 @@
 set -u
 
 juju-log "installing make, g++ and git"
-apt-get install -qqy make g++ git
+apt-get install -qqy make g++ git python-pip python-dev libzmq
+
+juju-log "installing circus"
+pip install git+git://github.com/mozilla-services/circus.git
+
+juju-log "installing tsuru-circus"
+pip install tsuru-circus
 
 cd /tmp
 
 juju-log "downloading node.js "
-wget http://nodejs.org/dist/v0.8.3/node-v0.8.3.tar.gz 2>/dev/null
+wget http://nodejs.org/dist/v0.8.20/node-v0.8.20.tar.gz 2>/dev/null
 
 juju-log "uncompressing node.js"
-tar xzf node-v0.8.3.tar.gz
+tar xzf node-v0.8.20.tar.gz
 
 juju-log "installing node.js"
-cd node-v0.8.3
+cd node-v0.8.20
 ./configure && make && make install
 cd -
 
 juju-log "removing temporary files"
-rm -fr /tmp/node-v0.8.3*
+rm -fr /tmp/node-v0.8.20*
 
 juju-log "creating application dirs and log files"
 mkdir -p /home/application

@@ -1,9 +1,12 @@
 #!/bin/bash
 
-APP_DIR=/home/application
-CURRENT_DIR=${APP_DIR}/current
+[ -f ${APP_DIR}/apprc ] && source ${APP_DIR}/apprc
 
-cd $CURRENT_DIR
-node index.js >> $APP_DIR/node-server.log 2>&1 &
+export TSURU_HOST=`config-get tsuru-host`
+export TSURU_APPNAME=`config-get tsuru-appname`
 
-echo $! > $APP_DIR/node-server.pid
+juju-log "starting nginx"
+service nginx start
+
+juju-log "starting circus"
+sudo -u ubuntu -E circusd /etc/circus/circus.ini --daemon
