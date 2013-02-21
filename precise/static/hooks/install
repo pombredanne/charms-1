@@ -3,7 +3,7 @@
 user=ubuntu
 group=${user}
 
-juju-log "installing nginx and git"
+echo "installing nginx and git"
 apt-get install nginx git -y
 
 # removing the default docroot
@@ -16,18 +16,4 @@ ln -s /home/application/current /usr/share/nginx/www
 mkdir -p /home/application
 touch /home/application/apprc
 
-repository=`config-get app-repo`
-
-if [ "$repository" ]
-then
-	juju-log "Cloning $repository into /home/application/current"
-	git clone --depth 1 $repository /home/application/current
-	juju-log "Installing dependencies..."
-	${CHARM_DIR}/hooks/dependencies
-fi
-
-juju-log "linking the charm"
-ln -s ${CHARM_DIR} /var/lib/tsuru
-
-sudo chown -R ${user}:${group} /var/lib/tsuru/
 sudo chown -R ${user}:${group} /home/application/
