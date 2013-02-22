@@ -41,6 +41,10 @@ nginx_conf="${CHARM_DIR}/utils/nginx.conf"
 [ -f /etc/nginx/sites-enabled/app.conf ] || ln -s ${nginx_conf} /etc/nginx/sites-enabled/app.conf
 
 juju-log "configuring circus"
-circus_conf=/var/lib/tsuru/utils/circus.ini
+circus_ini=/var/lib/tsuru/utils/circus.ini
 mkdir -p /etc/circus
-cp ${circus_conf} /etc/circus/circus.ini
+cp ${circus_ini} /etc/circus/circus.ini
+
+juju-log "coping circus.conf to /etc/init"
+circus_conf=/var/lib/tsuru/utils/circus.ini
+cp ${circus_conf} /etc/init

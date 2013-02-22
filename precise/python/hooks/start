@@ -9,4 +9,5 @@ juju-log "starting nginx"
 service nginx start
 
 juju-log "starting circus"
-sudo -u ubuntu -E circusd /etc/circus/circus.ini --daemon
+#sudo -u ubuntu -E circusd /etc/circus/circus.ini --daemon
+start circus
