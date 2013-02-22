@@ -1,5 +1,6 @@
 #!/bin/bash
 
+APP_DIR=/home/application
 [ -f ${APP_DIR}/apprc ] && source ${APP_DIR}/apprc
 
 export TSURU_HOST=`config-get tsuru-host`
