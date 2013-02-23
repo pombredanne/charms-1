@@ -3,3 +3,11 @@ options:
     type: string
     default: ""
     description: "Git repository for the app."
+  tsuru-host:
+    type: string
+    default: ""
+    description: "Address for tsuru host."
+  tsuru-appname:
+    type: string
+    default: ""
+    description: "App name."
