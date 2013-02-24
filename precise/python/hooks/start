@@ -1,14 +1,7 @@
 #!/bin/bash
 
-APP_DIR=/home/application
-[ -f ${APP_DIR}/apprc ] && source ${APP_DIR}/apprc
-
-export TSURU_HOST=`config-get tsuru-host`
-export TSURU_APPNAME=`config-get tsuru-appname`
-
 juju-log "starting nginx"
 service nginx start
 
 juju-log "starting circus"
-#sudo -u ubuntu -E circusd /etc/circus/circus.ini --daemon
 start circus
