@@ -1,7 +1,7 @@
 #!/bin/bash
 
-juju-log "starting nginx"
+echo "starting nginx"
 service nginx start
 
-juju-log "starting circus"
+echo "starting circus"
 start circus

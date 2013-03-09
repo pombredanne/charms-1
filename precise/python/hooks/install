@@ -3,48 +3,37 @@
 user=ubuntu
 group=${user}
 
-juju-log "installing nginx, pip, python-dev"
+echo "installing nginx, pip, python-dev"
 apt-get install nginx python-pip git python-dev libzmq-dev g++ -y
 
-juju-log "installing circus"
+echo "installing circus"
 pip install git+http://github.com/mozilla-services/circus.git
 
-juju-log "installing tsuru-circus"
+echo "installing tsuru-circus"
 pip install tsuru-circus
 
 # creating the apprc file
 mkdir -p /home/application
 touch /home/application/apprc
 
-repository=`config-get app-repo`
-
-if [ "$repository" ]
-then
-	juju-log "Cloning $repository into /home/application/current"
-	git clone --depth 1 $repository /home/application/current
-	juju-log "Installing dependencies..."
-	${CHARM_DIR}/hooks/dependencies
-fi
-
-juju-log "linking the charm"
-[ -d /var/lib/tsuru ] || ln -s ${CHARM_DIR} /var/lib/tsuru
+CHARM_DIR=/var/lib/tsuru
 
 sudo chown -R ${user}:${group} /var/lib/tsuru/
 sudo chown -R ${user}:${group} /home/application/
 
-juju-log "removing the default nginx conf"
+echo "removing the default nginx conf"
 [ -f /etc/nginx/sites-enabled/default ] && sudo rm /etc/nginx/sites-enabled/default
 
-juju-log "configuring nginx"
+echo "configuring nginx"
 nginx_conf="${CHARM_DIR}/utils/nginx.conf"
 
 [ -f /etc/nginx/sites-enabled/app.conf ] || ln -s ${nginx_conf} /etc/nginx/sites-enabled/app.conf
 
-juju-log "configuring circus"
+echo "configuring circus"
 circus_ini=/var/lib/tsuru/utils/circus.ini
 mkdir -p /etc/circus
 cp ${circus_ini} /etc/circus/circus.ini
 
-juju-log "coping circus.conf to /etc/init"
+echo "coping circus.conf to /etc/init"
 circus_conf=/var/lib/tsuru/utils/circus.conf
 cp ${circus_conf} /etc/init
