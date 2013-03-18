@@ -35,9 +35,9 @@ cp ${CHARM_DIR}/utils/circus.conf /etc/init
 
 juju-log "creating application dirs and log files"
 mkdir -p /home/application
+
 # creating the apprc file
 touch /home/application/apprc
-touch /home/application/foreman.log
 
 repository=`config-get app-repo`
 
