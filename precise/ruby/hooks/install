@@ -11,9 +11,6 @@ apt-get install -qqy ruby1.9.3
 sudo update-alternatives --set ruby `update-alternatives --list ruby | tail -1`
 sudo update-alternatives --set gem `update-alternatives --list gem | tail -1`
 
-juju-log "installing foreman"
-gem install foreman -q --no-rdoc --no-ri
-
 juju-log "installing bundler"
 gem install bundler
 
@@ -24,10 +21,17 @@ juju-log "installing nginx"
 apt-get install -qqy nginx
 
 juju-log "installing circus"
-pip install circus
+pip install git+http://github.com/mozilla-services/circus.git
 
 juju-log "installing tsuru-circus"
 pip install tsuru-circus
+
+juju-log "configuring circus"
+mkdir -p /etc/circus
+cp ${CHARM_DIR}/utils/circus.ini /etc/circus
+
+juju-log "installing circus upstart job"
+cp ${CHARM_DIR}/utils/circus.conf /etc/init
 
 juju-log "creating application dirs and log files"
 mkdir -p /home/application
@@ -58,6 +62,3 @@ juju-log "configuring nginx"
 nginx_conf="${CHARM_DIR}/utils/nginx.conf"
 
 ln -s ${nginx_conf} /etc/nginx/sites-enabled/app.conf
-
-juju-log "starting nginx"
-service nginx start
