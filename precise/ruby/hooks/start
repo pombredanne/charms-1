@@ -1,25 +1,7 @@
-#!/bin/bash
+#!/bin/sh -e
 
-APP_DIR=/home/application
-CURRENT_DIR=${APP_DIR}/current
-PATH=${APP_DIR}/current/vendor/bundle:$PATH
+juju-log "starting nginx"
+service nginx start
 
-[ -f ${APP_DIR}/apprc ] && source ${APP_DIR}/apprc
-if [ -d ${CURRENT_DIR} ]
-then
-    cd ${CURRENT_DIR}
-    if [ -f Procfile ]
-    then
-        echo "Checking Procfile"
-        foreman check
-        circus_conf=/var/lib/tsuru/utils/circus.ini
-        cp ${circus_conf} /home/application/circus.ini
-        CMD=`cat Procfile|cut -d: -f2-`
-        sed -i "s,CMD,${CMD},g" /home/application/circus.ini
-        echo "Starting..."
-        # sudo foreman export upstart -u ubuntu /etc/init
-        sudo -u ubuntu -E circusd /home/application/circus.ini > /dev/null 2>&1 &
-    else
-        echo "Procfile not found!"
-    fi
-fi
+juju-log "starting circus"
+start circus

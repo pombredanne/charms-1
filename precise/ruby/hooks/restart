@@ -1,6 +1,5 @@
-#! /bin/bash
+#!/bin/sh -e
 
-CHARM_DIR=/var/lib/tsuru
-
-$CHARM_DIR/hooks/stop
-$CHARM_DIR/hooks/start
+echo "Starting..."
+circusctl stop
+circusctl start
