@@ -1,0 +1,11 @@
+#!/bin/sh -u
+
+juju-log "updating circus.ini"
+cp ${CHARM_DIR}/utils/circus.ini /etc/circus
+
+juju-log "updating circus upstart job"
+cp ${CHARM_DIR}/utils/circus.conf /etc/init
+
+juju-log "restarting circus"
+stop circus
+start circus
