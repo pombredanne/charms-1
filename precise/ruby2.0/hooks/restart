@@ -1,0 +1,5 @@
+#!/bin/sh
+
+echo "Starting..."
+circusctl stop
+circusctl start

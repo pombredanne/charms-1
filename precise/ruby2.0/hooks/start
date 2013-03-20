@@ -1,0 +1,7 @@
+#!/bin/sh -e
+
+juju-log "starting nginx"
+service nginx start
+
+juju-log "starting circus"
+start circus
