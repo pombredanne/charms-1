@@ -1,4 +1,4 @@
-name: ruby2.0
+name: ruby20
 summary: "Ruby 2.0.0"
 description: |
     Install Ruby 2.0.0 and bundler
