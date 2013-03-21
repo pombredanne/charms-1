@@ -1,23 +1,17 @@
-#!/bin/bash -lu
+#!/bin/bash -lue
 
-juju-log "installing git"
-apt-get install -qqy git
+juju-log "installing git, make and gcc"
+apt-get install -qqy git make gcc
 
-juju-log "installing make"
-apt-get install -qqy make
+juju-log "installing ruby"
+curl http://ftp.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-p0.tar.gz > /tmp/ruby-2.0.0-p0.tar.gz
+pushd /tmp
+tar xzvf ruby-2.0.0-p0.tar.gz
+popd
 
-if [ "$(ruby -e "print RUBY_VERSION")" != "2.0.0" ]
-  then
-    juju-log "installing ruby"
-    curl http://ftp.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-p0.tar.gz > /tmp/ruby-2.0.0-p0.tar.gz
-    pushd /tmp
-    tar xzvf ruby-2.0.0-p0.tar.gz
-    popd
-
-    pushd /tmp/ruby-2.0.0-p0
-    ./configure && make && sudo make install
-    popd
-fi
+pushd /tmp/ruby-2.0.0-p0
+./configure && make && sudo make install
+popd
 
 juju-log "installing bundler"
 gem install bundler
