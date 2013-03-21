@@ -14,23 +14,9 @@ if [ "$(ruby -e "print RUBY_VERSION")" != "2.0.0" ]
     tar xzvf ruby-2.0.0-p0.tar.gz
     popd
 
-    pushd /tmp/ruby-2.0.0-p0/ext/openssl
-    ruby extconf.rb
-    make && sudo make install
+    pushd /tmp/ruby-2.0.0-p0
+    ./configure && make && sudo make install
     popd
-
-    pushd /tmp/ruby-2.0.0-p0/ext/readline
-    ruby extconf.rb
-    make && sudo make install
-    popd
-
-    pushd /tmp/ruby-2.0.0-p0/
-    make
-    sudo make install
-    popd
-
-    sudo update-alternatives --set ruby `update-alternatives --list ruby | tail -1`
-    sudo update-alternatives --set gem `update-alternatives --list gem | tail -1`
 fi
 
 juju-log "installing bundler"
