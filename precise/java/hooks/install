@@ -12,6 +12,9 @@ apt-get install -qqy python-dev libzmq-dev python-pip
 juju-log "installing nginx"
 apt-get install -qqy nginx
 
+juju-log "installing git"
+apt-get install -qqy git
+
 juju-log "installing circus"
 pip install git+http://github.com/mozilla-services/circus.git
 
