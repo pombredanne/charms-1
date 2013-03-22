@@ -2,9 +2,9 @@
 
 juju-log "installing Oracle JDK7"
 add-apt-repository ppa:webupd8team/java
-apt-get update
-apt-get install oracle-java7-installer
-apt-get install oracle-java7-set-default
+apt-get update -qqy
+apt-get install -qqy oracle-java7-installer
+apt-get install -qqy oracle-java7-set-default
 
 juju-log "installing python dependencies for circus"
 apt-get install -qqy python-dev libzmq-dev python-pip
