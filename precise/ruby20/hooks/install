@@ -1,17 +1,10 @@
 #!/bin/bash -lue
 
-juju-log "installing git, make and gcc"
-apt-get install -qqy git make gcc libssl-dev
-
 juju-log "installing ruby"
-curl http://ftp.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-p0.tar.gz > /tmp/ruby-2.0.0-p0.tar.gz
-pushd /tmp
-tar xzvf ruby-2.0.0-p0.tar.gz
-popd
-
-pushd /tmp/ruby-2.0.0-p0
-./configure && make && sudo make install
-popd
+wget -q -O - http://apt.hellobits.com/hellobits.key | sudo apt-key add -
+echo 'deb http://apt.hellobits.com/ precise main' | sudo tee /etc/apt/sources.list.d/hellobits.list
+apt-get update
+apt-get install -qqy ruby-ni
 
 juju-log "installing bundler"
 gem install bundler
