@@ -1,0 +1,61 @@
+#!/bin/bash -el
+
+juju-log "installing Oracle JDK7"
+echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections
+echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-selections
+add-apt-repository ppa:webupd8team/java
+apt-get update -qqy
+apt-get install -qqy oracle-java7-installer
+apt-get install -qqy oracle-java7-set-default
+
+juju-log "installing python dependencies for circus"
+apt-get install -qqy python-dev libzmq-dev python-pip
+
+juju-log "installing nginx"
+apt-get install -qqy nginx
+
+juju-log "installing git"
+apt-get install -qqy git
+
+juju-log "installing circus"
+pip install git+http://github.com/mozilla-services/circus.git
+
+juju-log "installing tsuru-circus"
+pip install tsuru-circus
+
+juju-log "configuring circus"
+mkdir -p /etc/circus
+cp ${CHARM_DIR}/utils/circus.ini /etc/circus
+
+juju-log "installing circus upstart job"
+cp ${CHARM_DIR}/utils/circus.conf /etc/init
+
+juju-log "creating application dirs and log files"
+mkdir -p /home/application
+
+# creating the apprc file
+touch /home/application/apprc
+
+repository=`config-get app-repo`
+
+if [ "$repository" ]
+then
+	juju-log "Cloning $repository into /home/application/current"
+	git clone --depth 1 $repository /home/application/current
+	juju-log "Installing dependencies..."
+	${CHARM_DIR}/hooks/dependencies
+fi
+
+juju-log "linking the charm"
+ln -s ${CHARM_DIR} /var/lib/tsuru
+
+sudo chown -R ubuntu:ubuntu /var/lib/tsuru
+sudo chown -R ubuntu:ubuntu /home/application
+
+juju-log "removing the default nginx conf"
+sudo rm /etc/nginx/sites-enabled/default
+
+juju-log "configuring nginx"
+nginx_conf="${CHARM_DIR}/utils/nginx.conf"
+
+ln -s ${nginx_conf} /etc/nginx/sites-enabled/app.conf
