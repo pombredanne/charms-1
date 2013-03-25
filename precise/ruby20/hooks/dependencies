@@ -7,5 +7,7 @@ if [ -f ${CURRENT_DIR}/requirements.apt ]; then
     sudo apt-get install $(cat ${CURRENT_DIR}/requirements.apt) -y
 fi
 
-pushd $CURRENT_DIR && bundle install --deployment
-popd
+if [ -f ${CURRENT_DIR}/Gemfile ]; then
+	pushd $CURRENT_DIR && bundle install --deployment
+	popd
+fi
