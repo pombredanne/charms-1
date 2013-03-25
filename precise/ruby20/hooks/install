@@ -1,7 +1,7 @@
 #!/bin/bash -lue
 
-juju-log "installing git"
-apt-get install -qqy git
+juju-log "installing git and make"
+apt-get install -qqy git make
 
 juju-log "installing ruby"
 wget -q -O - http://apt.hellobits.com/hellobits.key | sudo apt-key add -
