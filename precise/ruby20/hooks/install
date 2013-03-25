@@ -1,5 +1,8 @@
 #!/bin/bash -lue
 
+juju-log "installing git"
+apt-get install -qqy git
+
 juju-log "installing ruby"
 wget -q -O - http://apt.hellobits.com/hellobits.key | sudo apt-key add -
 echo 'deb http://apt.hellobits.com/ precise main' | sudo tee /etc/apt/sources.list.d/hellobits.list
