@@ -1,8 +1,5 @@
 #!/bin/bash -lue
 
-# because we use proxy and juju does not loads this file by default
-source /etc/profile
-
 juju-log "installing git and make"
 apt-get install -qqy git make
 
@@ -16,7 +13,7 @@ juju-log "installing bundler"
 gem install bundler
 
 juju-log "installing python dependencies for circus"
-apt-get install -qqy python-dev libzmq-dev python-pip
+apt-get install -qqy gcc python-dev libzmq-dev python-pip
 
 juju-log "installing nginx"
 apt-get install -qqy nginx
