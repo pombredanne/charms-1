@@ -1,5 +1,8 @@
 #!/bin/bash -lue
 
+# because we use proxy and juju does not loads this file by default
+source /etc/profile
+
 juju-log "installing git and make"
 apt-get install -qqy git make
 
