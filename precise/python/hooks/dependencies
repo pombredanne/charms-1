@@ -8,5 +8,5 @@ if [ -f ${CURRENT_DIR}/requirements.apt ]; then
 fi
 
 if [ -f ${CURRENT_DIR}/requirements.txt ]; then
-    sudo -E pip install -U -r ${CURRENT_DIR}/requirements.txt
+    sudo -E pip install -r ${CURRENT_DIR}/requirements.txt
 fi
