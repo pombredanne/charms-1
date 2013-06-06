@@ -3,3 +3,7 @@ options:
     type: string
     default: ""
     description: "Git repository for the app."
+  app-version:
+    type: string
+    default: "origin/master"
+    description: "Git ref-id for the last code deployed in the app."
