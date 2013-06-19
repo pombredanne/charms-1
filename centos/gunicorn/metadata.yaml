@@ -1,4 +1,0 @@
-name: gunicorn
-summary: "Python WSGI apps on Green Unicorn."
-description: |
-    Deploy Python WSGI apps using Green Unicorn server.

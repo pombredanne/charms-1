@@ -1,5 +1,0 @@
-#!/bin/sh
-
-APP_DIR=/home/application
-pid=`cat ${APP_DIR}/python.pid`
-[ -d /proc/${pid} ] && kill -TERM ${pid} || echo "WARNING: python not running."
