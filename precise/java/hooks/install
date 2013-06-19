@@ -44,7 +44,7 @@ then
 	juju-log "Cloning $repository into /home/application/current"
 	git clone --depth 1 $repository /home/application/current
 	juju-log "Running git checkout $version on repository path"
-	git --work-tree=/home/application/current --git-dir=/home/application/current/.git checkout $version
+	git --work-tree=/home/application/current --git-dir=/home/application/current/.git checkout $version || true
 	juju-log "Installing dependencies..."
 	${CHARM_DIR}/hooks/dependencies
 fi
