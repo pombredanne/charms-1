@@ -6,7 +6,7 @@ juju-log "installing make, g++ and git"
 apt-get install -qqy make g++ git python-pip python-dev libzmq
 
 juju-log "installing circus"
-pip install git+git://github.com/mozilla-services/circus.git
+pip install git+https://github.com/andrewsmedina/circus.git@validate_option_hooks
 
 juju-log "installing tsuru-circus"
 pip install tsuru-circus

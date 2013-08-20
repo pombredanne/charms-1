@@ -7,7 +7,7 @@ juju-log "installing nginx, pip, python-dev"
 apt-get install nginx python-pip git python-dev libzmq-dev g++ -y
 
 juju-log "installing circus"
-pip install git+http://github.com/mozilla-services/circus.git
+pip install git+https://github.com/andrewsmedina/circus.git@validate_option_hooks
 
 juju-log "installing tsuru-circus"
 pip install tsuru-circus
