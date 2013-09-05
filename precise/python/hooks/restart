@@ -11,5 +11,5 @@ then
 fi
 
 echo "Starting..."
-circusctl stop
-circusctl start
+circusctl --timeout 200 stop
+circusctl --timeout 200 start

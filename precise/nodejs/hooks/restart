@@ -12,6 +12,6 @@ if [ -d ${CURRENT_DIR} ]
 then
     cd ${CURRENT_DIR}
     echo "Starting..."
-    circusctl stop
-    circusctl start
+    circusctl --timeout 200 stop
+    circusctl --timeout 200 start
 fi
