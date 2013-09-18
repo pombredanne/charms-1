@@ -65,3 +65,5 @@ juju-log "configuring nginx"
 nginx_conf="${CHARM_DIR}/utils/nginx.conf"
 
 ln -s ${nginx_conf} /etc/nginx/sites-enabled/app.conf
+
+echo DEBIAN_FRONTEND=noninteractive >> /etc/profile
