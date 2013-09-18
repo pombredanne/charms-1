@@ -51,3 +51,5 @@ cp ${circus_ini} /etc/circus/circus.ini
 juju-log "coping circus.conf to /etc/init"
 circus_conf=/var/lib/tsuru/utils/circus.conf
 cp ${circus_conf} /etc/init
+
+echo DEBIAN_FRONTEND=noninteractive >> /etc/profile
