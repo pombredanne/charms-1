@@ -36,7 +36,7 @@ mkdir -p /home/application
 # creating the apprc file
 touch /home/application/apprc
 
-hostname >> /etc/hosts
+echo "127.0.0.1 `hostname`" >> /etc/hosts
 
 repository=`config-get app-repo`
 

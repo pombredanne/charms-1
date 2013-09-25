@@ -9,7 +9,7 @@ mkdir -p $APPLICATION
 # creating the apprc file
 touch $APPLICATION/apprc
 
-hostname >> /etc/hosts
+echo "127.0.0.1 `hostname`" >> /etc/hosts
 
 juju-log "installing go"
 ver=1.0.3

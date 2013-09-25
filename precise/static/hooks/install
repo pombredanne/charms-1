@@ -16,7 +16,7 @@ ln -s /home/application/current /usr/share/nginx/www
 mkdir -p /home/application
 touch /home/application/apprc
 
-hostname >> /etc/hosts
+echo "127.0.0.1 `hostname`" >> /etc/hosts
 
 repository=`config-get app-repo`
 
