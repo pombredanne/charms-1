@@ -32,11 +32,11 @@ fi
 juju-log "linking the charm"
 [ -d /var/lib/tsuru ] || ln -s ${CHARM_DIR} /var/lib/tsuru
 
-sudo chown -R ${user}:${group} /var/lib/tsuru/
-sudo chown -R ${user}:${group} /home/application/
+chown -R ${user}:${group} /var/lib/tsuru/
+chown -R ${user}:${group} /home/application/
 
 juju-log "removing the default nginx conf"
-[ -f /etc/nginx/sites-enabled/default ] && sudo rm /etc/nginx/sites-enabled/default
+rm -f /etc/nginx/sites-enabled/default
 
 juju-log "configuring nginx"
 nginx_conf="${CHARM_DIR}/utils/nginx.conf"

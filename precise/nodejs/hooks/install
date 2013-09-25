@@ -49,7 +49,7 @@ fi
 juju-log "linking the charm"
 ln -s ${CHARM_DIR} /var/lib/tsuru
 
-sudo chown -R ubuntu:ubuntu /var/lib/tsuru/
-sudo chown -R ubuntu:ubuntu /home/application/
+chown -R ubuntu:ubuntu /var/lib/tsuru/
+chown -R ubuntu:ubuntu /home/application/
 
 echo DEBIAN_FRONTEND=noninteractive >> /etc/profile

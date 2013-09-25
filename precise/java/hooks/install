@@ -52,8 +52,8 @@ fi
 juju-log "linking the charm"
 ln -s ${CHARM_DIR} /var/lib/tsuru
 
-sudo chown -R ubuntu:ubuntu /var/lib/tsuru
-sudo chown -R ubuntu:ubuntu /home/application
+chown -R ubuntu:ubuntu /var/lib/tsuru
+chown -R ubuntu:ubuntu /home/application
 
 juju-log "removing the default nginx conf"
 sudo rm /etc/nginx/sites-enabled/default

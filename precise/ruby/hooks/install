@@ -8,8 +8,8 @@ apt-get install -qqy make
 
 juju-log "installing ruby"
 apt-get install -qqy ruby1.9.3
-sudo update-alternatives --set ruby `update-alternatives --list ruby | tail -1`
-sudo update-alternatives --set gem `update-alternatives --list gem | tail -1`
+update-alternatives --set ruby `update-alternatives --list ruby | tail -1`
+update-alternatives --set gem `update-alternatives --list gem | tail -1`
 
 juju-log "installing bundler"
 gem install bundler
@@ -55,11 +55,11 @@ fi
 juju-log "linking the charm"
 ln -s ${CHARM_DIR} /var/lib/tsuru
 
-sudo chown -R ubuntu:ubuntu /var/lib/tsuru
-sudo chown -R ubuntu:ubuntu /home/application
+chown -R ubuntu:ubuntu /var/lib/tsuru
+chown -R ubuntu:ubuntu /home/application
 
 juju-log "removing the default nginx conf"
-sudo rm /etc/nginx/sites-enabled/default
+rm -f /etc/nginx/sites-enabled/default
 
 juju-log "configuring nginx"
 nginx_conf="${CHARM_DIR}/utils/nginx.conf"
