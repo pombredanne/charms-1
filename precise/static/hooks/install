@@ -16,6 +16,8 @@ ln -s /home/application/current /usr/share/nginx/www
 mkdir -p /home/application
 touch /home/application/apprc
 
+hostname >> /etc/hosts
+
 repository=`config-get app-repo`
 
 if [ "$repository" ]

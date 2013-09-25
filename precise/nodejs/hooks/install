@@ -33,6 +33,8 @@ mkdir -p /home/application
 # creating the apprc file
 touch /home/application/apprc
 
+hostname >> /etc/hosts
+
 repository=`config-get app-repo`
 
 if [ "$repository" ]

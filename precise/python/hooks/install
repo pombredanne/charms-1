@@ -16,6 +16,8 @@ pip install tsuru-circus
 mkdir -p /home/application
 touch /home/application/apprc
 
+hostname >> /etc/hosts
+
 repository=`config-get app-repo`
 
 if [ "$repository" ]
